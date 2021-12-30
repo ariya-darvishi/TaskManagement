@@ -32,10 +32,10 @@ interface TaskManagementDao {
 
     @Transaction
     @Query("SELECT * FROM SubTask WHERE taskId = :taskId")
-    suspend fun getTaskWithSubTasks(taskId: String): Flow<List<TaskWithSubTasks>>
+    suspend fun getTaskWithSubTasks(taskId: Int): Flow<List<TaskWithSubTasks>>
 
     @Transaction
     @Query("SELECT * FROM User WHERE taskId = :taskId")
-    suspend fun getTaskWithUsers(taskId: String): Flow<List<TaskWithUsers>>
+    suspend fun getTaskWithUsers(taskId: Int): Flow<List<TaskWithUsers>>
 
 }
