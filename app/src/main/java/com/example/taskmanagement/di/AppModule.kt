@@ -2,7 +2,10 @@ package com.example.taskmanagement.di
 
 import android.content.Context
 import androidx.room.Room
+import com.example.taskmanagement.data.TaskManagementDao
 import com.example.taskmanagement.data.TaskManagementDatabase
+import com.example.taskmanagement.repositories.DefaultTaskManagementRepository
+import com.example.taskmanagement.repositories.TaskManagementRepository
 import com.example.taskmanagement.utils.Constants.DATABASE_NAME
 import dagger.Module
 import dagger.Provides
@@ -32,5 +35,11 @@ object AppModule {
         database: TaskManagementDatabase
     ) = database.taskManagementDao()
 
+
+    @Singleton
+    @Provides
+    fun provideRepository(
+        dao: TaskManagementDao
+    )  = DefaultTaskManagementRepository(dao) as TaskManagementRepository
 
 }
