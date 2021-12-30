@@ -6,9 +6,10 @@ import androidx.room.PrimaryKey
 @Entity
 data class SubTask(
 
-    @PrimaryKey(autoGenerate = false)
+    @PrimaryKey(autoGenerate = true)
+    val subTaskId: Int,
     val subTaskTitle: String,
 
-    val taskTitle: String
+    val taskId: Int
 
 )

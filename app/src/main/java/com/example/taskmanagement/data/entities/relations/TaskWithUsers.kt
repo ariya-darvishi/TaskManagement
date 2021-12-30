@@ -10,8 +10,8 @@ data class TaskWithUsers(
     @Embedded val task: Task,
 
     @Relation(
-        parentColumn = "taskTitle",
-        entityColumn = "taskTitle"
+        parentColumn = "taskId",
+        entityColumn = "taskId"
     )
 
     val users: List<User>

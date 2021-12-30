@@ -11,8 +11,8 @@ data class TaskWithSubTasks(
     @Embedded val task: Task,
 
     @Relation(
-        parentColumn = "taskTitle",
-        entityColumn = "taskTitle"
+        parentColumn = "taskId",
+        entityColumn = "taskId"
     )
 
     val subTasks: List<SubTask>

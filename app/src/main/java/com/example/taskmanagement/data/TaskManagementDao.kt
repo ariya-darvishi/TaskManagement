@@ -19,14 +19,13 @@ interface TaskManagementDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertUser(user: User)
-    
 
     @Transaction
-    @Query("SELECT * FROM SubTask WHERE taskTitle = :taskTitle")
-    suspend fun getTaskWithSubTasks(taskTitle: String): Flow<List<TaskWithSubTasks>>
+    @Query("SELECT * FROM SubTask WHERE taskId = :taskId")
+    suspend fun getTaskWithSubTasks(taskId: String): Flow<List<TaskWithSubTasks>>
 
     @Transaction
-    @Query("SELECT * FROM User WHERE taskTitle = :taskTitle")
-    suspend fun getTaskWithUsers(taskTitle: String): Flow<List<TaskWithUsers>>
+    @Query("SELECT * FROM User WHERE taskId = :taskId")
+    suspend fun getTaskWithUsers(taskId: String): Flow<List<TaskWithUsers>>
 
 }
