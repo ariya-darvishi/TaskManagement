@@ -20,6 +20,16 @@ interface TaskManagementDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertUser(user: User)
 
+    @Query("SELECT * FROM Task")
+    suspend fun getAllTasks(): Flow<List<Task>>
+
+    @Query("SELECT * FROM Task ORDER BY taskId DESC LIMIT 1")
+    suspend fun getNewestTask(): Flow<Task>
+
+    @Query("SELECT * FROM Task ORDER BY taskId DESC LIMIT 30 OFFSET 1")
+    suspend fun getAllTasksMinusNewestTask(): Flow<List<Task>>
+
+
     @Transaction
     @Query("SELECT * FROM SubTask WHERE taskId = :taskId")
     suspend fun getTaskWithSubTasks(taskId: String): Flow<List<TaskWithSubTasks>>
