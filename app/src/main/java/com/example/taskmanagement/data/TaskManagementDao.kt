@@ -21,21 +21,21 @@ interface TaskManagementDao {
     suspend fun insertUser(user: User)
 
     @Query("SELECT * FROM Task")
-    suspend fun getAllTasks(): Flow<List<Task>>
+    fun getAllTasks(): Flow<List<Task>>
 
     @Query("SELECT * FROM Task ORDER BY taskId DESC LIMIT 1")
-    suspend fun getNewestTask(): Flow<Task>
+    fun getNewestTask(): Flow<Task>
 
     @Query("SELECT * FROM Task ORDER BY taskId DESC LIMIT 30 OFFSET 1")
-    suspend fun getAllTasksMinusNewestTask(): Flow<List<Task>>
+    fun getAllTasksMinusNewestTask(): Flow<List<Task>>
 
 
     @Transaction
-    @Query("SELECT * FROM SubTask WHERE taskId = :taskId")
-    suspend fun getTaskWithSubTasks(taskId: Int): Flow<List<TaskWithSubTasks>>
+    @Query("SELECT * FROM Task WHERE taskId = :taskId")
+    fun getTaskWithSubTasks(taskId: Int): Flow<List<TaskWithSubTasks>>
 
     @Transaction
-    @Query("SELECT * FROM User WHERE taskId = :taskId")
-    suspend fun getTaskWithUsers(taskId: Int): Flow<List<TaskWithUsers>>
+    @Query("SELECT * FROM Task WHERE taskId = :taskId")
+    fun getTaskWithUsers(taskId: Int): Flow<List<TaskWithUsers>>
 
 }

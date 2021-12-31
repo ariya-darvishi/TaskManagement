@@ -15,12 +15,12 @@ interface TaskManagementRepository {
     suspend fun insertUser(user: User)
 
 
-    suspend fun getAllTasks(): Flow<List<Task>>
-    suspend fun getNewestTask(): Flow<Task>
-    suspend fun getAllTasksMinusNewestTask(): Flow<List<Task>>
+    fun getAllTasks(): Flow<List<Task>>
+    fun getNewestTask(): Flow<Task>
+    fun getAllTasksMinusNewestTask(): Flow<List<Task>>
 
 
-    suspend fun getTaskWithSubTasks(taskId: Int): Flow<List<TaskWithSubTasks>>
-    suspend fun getTaskWithUsers(taskId: Int): Flow<List<TaskWithUsers>>
+    fun getTaskWithSubTasks(taskId: Int): Flow<List<TaskWithSubTasks>>
+    fun getTaskWithUsers(taskId: Int): Flow<List<TaskWithUsers>>
 
 }

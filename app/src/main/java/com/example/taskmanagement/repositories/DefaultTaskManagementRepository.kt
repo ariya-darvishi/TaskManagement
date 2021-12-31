@@ -23,17 +23,17 @@ class DefaultTaskManagementRepository(
         dao.insertUser(user)
     }
 
-    override suspend fun getAllTasks(): Flow<List<Task>> = dao.getAllTasks()
+    override fun getAllTasks(): Flow<List<Task>> = dao.getAllTasks()
 
 
-    override suspend fun getNewestTask(): Flow<Task> = dao.getNewestTask()
+    override fun getNewestTask(): Flow<Task> = dao.getNewestTask()
 
-    override suspend fun getAllTasksMinusNewestTask(): Flow<List<Task>> =
+    override fun getAllTasksMinusNewestTask(): Flow<List<Task>> =
         dao.getAllTasksMinusNewestTask()
 
-    override suspend fun getTaskWithSubTasks(taskId: Int): Flow<List<TaskWithSubTasks>> =
+    override fun getTaskWithSubTasks(taskId: Int): Flow<List<TaskWithSubTasks>> =
         dao.getTaskWithSubTasks(taskId)
 
-    override suspend fun getTaskWithUsers(taskId: Int): Flow<List<TaskWithUsers>> =
+    override fun getTaskWithUsers(taskId: Int): Flow<List<TaskWithUsers>> =
         dao.getTaskWithUsers(taskId)
 }
