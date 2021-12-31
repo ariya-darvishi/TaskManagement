@@ -1,5 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="app/src/main/res/layout-w1240dp/activity_login.xml" value="0.1" />
+        <entry key="app/src/main/res/layout-w936dp/activity_login.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_chat.xml" value="0.11775362318840579" />
+        <entry key="app/src/main/res/layout/fragment_create_task.xml" value="0.11775362318840579" />
+        <entry key="app/src/main/res/layout/fragment_get_start_page.xml" value="0.11775362318840579" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.11775362318840579" />
+        <entry key="app/src/main/res/layout/fragment_login.xml" value="0.11775362318840579" />
+        <entry key="app/src/main/res/layout/fragment_select_login_or_signup_page.xml" value="0.11775362318840579" />
+        <entry key="app/src/main/res/layout/fragment_setting.xml" value="0.11775362318840579" />
+        <entry key="app/src/main/res/layout/fragment_show_all_tasks.xml" value="0.11775362318840579" />
+        <entry key="app/src/main/res/layout/fragment_signup.xml" value="0.11775362318840579" />
+        <entry key="app/src/main/res/layout/fragment_task_detail.xml" value="0.11775362318840579" />
+      </map>
+    </option>
+  </component>
   <component name="EntryPointsManager">
     <list size="1">
       <item index="0" class="java.lang.String" itemvalue="androidx.room.Query" />

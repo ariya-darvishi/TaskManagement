@@ -11,7 +11,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TaskManagement">
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.activities.LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
