@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/login_activity_nav_graph"
+    app:startDestination="@id/getStartPageFragment">
+
+    <fragment
+        android:id="@+id/getStartPageFragment"
+        android:name="com.example.taskmanagement.ui.fragments.onLoginActivity.GetStartPageFragment"
+        android:label="GetStartPageFragment" >
+        <action
+            android:id="@+id/action_getStartPageFragment_to_selectLoginOrSignupPageFragment"
+            app:destination="@id/selectLoginOrSignupPageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.taskmanagement.ui.fragments.onLoginActivity.LoginFragment"
+        android:label="LoginFragment" />
+    <fragment
+        android:id="@+id/selectLoginOrSignupPageFragment"
+        android:name="com.example.taskmanagement.ui.fragments.onLoginActivity.SelectLoginOrSignupPageFragment"
+        android:label="SelectLoginOrSignupPageFragment" >
+        <action
+            android:id="@+id/action_selectLoginOrSignupPageFragment_to_signupFragment"
+            app:destination="@id/signupFragment" />
+        <action
+            android:id="@+id/action_selectLoginOrSignupPageFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signupFragment"
+        android:name="com.example.taskmanagement.ui.fragments.onLoginActivity.SignupFragment"
+        android:label="SignupFragment" />
+</navigation>
