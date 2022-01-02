@@ -1,20 +1,19 @@
 package com.example.taskmanagement.ui.fragments.onMainActivity
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
-import android.widget.ImageButton
-import android.widget.TextView
-import android.widget.Toast
-import androidx.appcompat.widget.Toolbar
-import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
+import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import com.example.taskmanagement.R
-import com.example.taskmanagement.ui.activities.MainActivity
+import com.example.taskmanagement.databinding.FragmentCreateTaskBinding
 
 
-class CreateTaskFragment : Fragment(R.layout.fragment_create_task) {
+class CreateTaskFragment : BaseFragment() {
+
+    private lateinit var binding: FragmentCreateTaskBinding
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -22,14 +21,19 @@ class CreateTaskFragment : Fragment(R.layout.fragment_create_task) {
         setupToolbar(view)
     }
 
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_create_task, container, false)
+
+
+        return binding.root
+    }
+
     @SuppressLint("SetTextI18n", "CutPasteId")
     private fun setupToolbar(view: View) {
-
-        val navController = Navigation.findNavController(view)
-
-        val toolbar: Toolbar = view.findViewById(R.id.toolbar)
-        val toolbarTitle: TextView = toolbar.findViewById(R.id.toolbar_title)
-        val toolbarBackBtn: ImageButton = toolbar.findViewById(R.id.toolbar_back_btn)
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
 
