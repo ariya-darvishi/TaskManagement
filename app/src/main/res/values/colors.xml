@@ -16,4 +16,7 @@
     <color name="bottom_navigation_view_icon_tint_color">#666666</color>
 
 
+    <color name="toolbar_title_color">#1E1E1E</color>
+
+
 </resources>
