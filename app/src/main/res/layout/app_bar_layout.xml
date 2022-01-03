@@ -36,8 +36,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:foregroundGravity="left"
-                android:background="@drawable/ic_back_page"
-                />
+                android:background="@drawable/ic_toolbar_back_page"/>
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 </layout>

@@ -18,5 +18,8 @@
 
     <color name="toolbar_title_color">#1E1E1E</color>
 
+    <color name="newest_task_title">#FFFFFF</color>
+    <color name="newest_task_short_description">#CEDEFF</color>
+
 
 </resources>
