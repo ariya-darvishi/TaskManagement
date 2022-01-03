@@ -4,6 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <variable
+            name="fragmentCreateTask"
+            type="com.example.taskmanagement.ui.fragments.onMainActivity.CreateTaskFragment" />
 
     </data>
 
@@ -268,6 +271,7 @@
                     android:id="@+id/create_task_btn"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:onClick="@{(view)-> fragmentCreateTask.createNewTaskBtnClickListener(view)}"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="24dp"
                     android:layout_marginEnd="24dp"
