@@ -50,6 +50,10 @@ class TaskManagementViewModel @Inject constructor(
         repository.insertUser(user)
     }
 
+    fun updateSubTaskStatus(subTask: SubTask) = viewModelScope.launch(Dispatchers.IO) {
+        repository.updateSubTaskStatus(subTask)
+    }
+
     fun getAllTasks() =
         viewModelScope.launch(Dispatchers.IO) {
             repository.getAllTasks().collect {

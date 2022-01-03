@@ -14,6 +14,8 @@ interface TaskManagementRepository {
     suspend fun insertSubTask(subTask: SubTask)
     suspend fun insertUser(user: User)
 
+    suspend fun updateSubTaskStatus(subTask: SubTask)
+
 
     fun getAllTasks(): Flow<List<Task>>
     fun getNewestTask(): Flow<Task>

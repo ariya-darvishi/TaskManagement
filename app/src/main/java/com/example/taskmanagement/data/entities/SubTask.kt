@@ -9,6 +9,7 @@ data class SubTask(
     @PrimaryKey(autoGenerate = true)
     val subTaskId: Int,
     val subTaskTitle: String,
+    val isCompleted: Boolean = false,
 
     val taskId: Int
 

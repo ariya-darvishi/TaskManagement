@@ -20,6 +20,9 @@ interface TaskManagementDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertUser(user: User)
 
+    @Update(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun updateSubTaskStatus(subTask: SubTask)
+
     @Query("SELECT * FROM Task")
     fun getAllTasks(): Flow<List<Task>>
 

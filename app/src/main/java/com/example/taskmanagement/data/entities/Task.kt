@@ -10,6 +10,7 @@ data class Task(
     val taskId: Int,
     val taskTitle: String,
     val shortDescription: String,
-    val longDescription: String
+    val longDescription: String,
+    val taskImg: String
 
 )
