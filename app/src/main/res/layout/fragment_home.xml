@@ -15,13 +15,11 @@
         app:layout_constraintEnd_toStartOf="@+id/right_guideline"
         app:layout_constraintTop_toTopOf="@+id/top_page_guideline">
 
-        <ImageButton
+        <ImageView
             android:id="@+id/search_btn_home_fragment"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@drawable/ic_search"
-            android:clickable="true"
-            android:focusable="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -109,6 +107,7 @@
                 android:id="@+id/chip_open_details_page"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
                 android:text="Details"
                 android:textColor="#FFFFFF"
@@ -123,7 +122,9 @@
                 app:chipStrokeColor="@color/white"
                 app:chipSurfaceColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/newest_task_left_guideline" />
+                app:layout_constraintStart_toStartOf="@+id/newest_task_left_guideline"
+                app:layout_constraintTop_toBottomOf="@+id/newest_task_short_description"
+                app:layout_constraintVertical_bias="1.0" />
 
             <TextView
                 android:id="@+id/newest_task_title"
@@ -151,9 +152,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
+                android:layout_marginEnd="24dp"
                 android:text="Task manager ui kit"
                 android:textColor="@color/newest_task_short_description"
                 android:textSize="13sp"
+                app:layout_constraintEnd_toStartOf="@+id/newest_task_users_list_cons"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/newest_task_left_guideline"
                 app:layout_constraintTop_toBottomOf="@+id/newest_task_title" />
 
@@ -200,7 +204,7 @@
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/newest_task_users_recycler_view"
                         android:layout_width="0dp"
-                        android:layout_height="100dp"
+                        android:layout_height="0dp"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginEnd="8dp"
