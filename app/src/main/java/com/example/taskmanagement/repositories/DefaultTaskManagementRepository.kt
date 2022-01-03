@@ -23,6 +23,10 @@ class DefaultTaskManagementRepository(
         dao.insertUser(user)
     }
 
+    override suspend fun updateSubTaskStatus(subTask: SubTask) {
+        dao.updateSubTaskStatus(subTask)
+    }
+
     override fun getAllTasks(): Flow<List<Task>> = dao.getAllTasks()
 
 
