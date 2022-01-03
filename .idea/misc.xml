@@ -14,7 +14,9 @@
         <entry key="app/src/main/res/drawable-v24/search_bg.xml" value="0.1" />
         <entry key="app/src/main/res/drawable-v24/search_invoice_date_bg.xml" value="0.1" />
         <entry key="app/src/main/res/drawable-v24/shape_btn.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/button_blue_bg.xml" value="0.12129629629629629" />
         <entry key="app/src/main/res/drawable/circle_button.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/circle_calendar_blue_bg.xml" value="0.12129629629629629" />
         <entry key="app/src/main/res/drawable/gradiant_top_of_navigation_bottom_view.xml" value="0.1037037037037037" />
         <entry key="app/src/main/res/drawable/gradientbackground.xml" value="0.10740740740740741" />
         <entry key="app/src/main/res/drawable/ic_add.xml" value="0.10740740740740741" />
@@ -22,6 +24,7 @@
         <entry key="app/src/main/res/drawable/ic_back.xml" value="0.10740740740740741" />
         <entry key="app/src/main/res/drawable/ic_back_page.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_backpage.xml" value="0.10740740740740741" />
+        <entry key="app/src/main/res/drawable/ic_calendar.xml" value="0.12129629629629629" />
         <entry key="app/src/main/res/drawable/ic_chat.xml" value="0.10740740740740741" />
         <entry key="app/src/main/res/drawable/ic_create_task.xml" value="0.10740740740740741" />
         <entry key="app/src/main/res/drawable/ic_home.xml" value="0.1824074074074074" />
@@ -34,11 +37,14 @@
         <entry key="app/src/main/res/drawable/ic_setting.xml" value="1.0" />
         <entry key="app/src/main/res/drawable/ic_settings.xml" value="0.10740740740740741" />
         <entry key="app/src/main/res/drawable/ic_splash.xml" value="1.0" />
+        <entry key="app/src/main/res/drawable/input_text_bg.xml" value="0.125" />
         <entry key="app/src/main/res/drawable/newest_task_back_bg.xml" value="0.12777777777777777" />
         <entry key="app/src/main/res/drawable/newest_task_bakground_bg.xml" value="0.13148148148148148" />
         <entry key="app/src/main/res/drawable/newest_task_bg.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/newest_task_front_bg.xml" value="0.12129629629629629" />
         <entry key="app/src/main/res/drawable/newest_task_users_back_bg.xml" value="0.12777777777777777" />
         <entry key="app/src/main/res/drawable/newest_task_users_list_front_bg.xml" value="0.12777777777777777" />
+        <entry key="app/src/main/res/drawable/ring_outline_bg_blue.xml" value="0.12129629629629629" />
         <entry key="app/src/main/res/drawable/search_bg.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/search_image.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/splash_image.xml" value="0.18796296296296297" />
@@ -52,9 +58,9 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.13333333333333333" />
         <entry key="app/src/main/res/layout/app_bar_layout.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_chat.xml" value="0.11775362318840579" />
-        <entry key="app/src/main/res/layout/fragment_create_task.xml" value="0.11775362318840579" />
+        <entry key="app/src/main/res/layout/fragment_create_task.xml" value="0.2" />
         <entry key="app/src/main/res/layout/fragment_get_start_page.xml" value="0.11775362318840579" />
-        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.75" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.11775362318840579" />
         <entry key="app/src/main/res/layout/fragment_select_login_or_signup_page.xml" value="0.11775362318840579" />
         <entry key="app/src/main/res/layout/fragment_setting.xml" value="0.11775362318840579" />
