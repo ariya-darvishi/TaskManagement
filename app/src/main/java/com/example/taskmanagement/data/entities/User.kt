@@ -10,7 +10,7 @@ data class User(
     val userId: Int,
     val userName: String,
     val userPassword: String,
-    val userImg: String,
+    val userImg: String?,
 
     val taskId: Int
 

@@ -11,6 +11,6 @@ data class Task(
     val taskTitle: String,
     val shortDescription: String,
     val longDescription: String,
-    val taskImg: String
+    val taskImg: String?
 
 )
