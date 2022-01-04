@@ -28,7 +28,7 @@
             android:id="@+id/toolbar_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/toolbar_title_color"
+            android:textColor="@color/black_color"
             android:fontFamily="sans-serif"
             android:textSize="16sp"
             android:layout_gravity="center" />

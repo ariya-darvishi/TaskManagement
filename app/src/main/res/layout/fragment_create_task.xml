@@ -281,7 +281,7 @@
                     style="@style/Widget.MaterialComponents.Button.Icon"
                     android:text="Create Now"
                     android:textAllCaps="false"
-                    android:textColor="@color/bottom_navigation_view_text_color"
+                    android:textColor="@color/white_color"
                     android:textSize="17sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/guideline3"
