@@ -2,8 +2,10 @@ package com.example.taskmanagement.ui.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.PopupMenu
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
 import com.example.taskmanagement.R
 import com.example.taskmanagement.databinding.ActivityMainBinding
@@ -12,7 +14,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var activityMainBinding: ActivityMainBinding
+    lateinit var activityMainBinding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +34,15 @@ class MainActivity : AppCompatActivity() {
         val menu = popupMenu.menu
         activityMainBinding.bottomNavigationView.setupWithNavController(menu,navController)
 
-
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.showAllTasksFragment ->
+                    activityMainBinding.bottomNavigationView.visibility = View.GONE
+                R.id.createTaskFragment ->
+                    activityMainBinding.bottomNavigationView.visibility = View.GONE
+                else ->
+                    activityMainBinding.bottomNavigationView.visibility = View.VISIBLE
+            }
+        }
     }
 }
