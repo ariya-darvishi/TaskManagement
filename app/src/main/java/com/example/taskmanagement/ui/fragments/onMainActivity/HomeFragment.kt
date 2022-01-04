@@ -8,9 +8,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.findNavController
 import com.example.taskmanagement.R
 import com.example.taskmanagement.databinding.FragmentHomeBinding
-import com.example.taskmanagement.utils.longSnackBar
 import com.example.taskmanagement.viewModels.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -27,7 +27,7 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
-
+        binding.fragmentHome = this
         return binding.root
     }
 
@@ -40,9 +40,15 @@ class HomeFragment : Fragment() {
 
     private fun showNewestTask() {
         viewModel.newestTask.observe(viewLifecycleOwner, Observer {
-            binding.newestTaskTitle.text = it.taskTitle
-            binding.newestTaskShortDescription.text = it.shortDescription
+            if (it!= null) {
+                binding.newestTaskTitle.text = it.taskTitle
+                binding.newestTaskShortDescription.text = it.shortDescription
+            }
         })
+    }
+
+    fun onSeeAllTasksClickListener(view: View) {
+        view.findNavController().navigate(R.id.action_homeFragment_to_showAllTasksFragment)
     }
 
 }
