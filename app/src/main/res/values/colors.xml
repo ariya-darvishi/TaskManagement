@@ -7,18 +7,14 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="ic_splash_screen_color">#246BFD</color>
 
 
-    <color name="bottom_navigation_view_background_color">#FFFFFF</color>
-    <color name="bottom_navigation_view_text_color">#FFFFFF</color>
-    <color name="bottom_navigation_view_indicator_color">#246BFD</color>
-    <color name="bottom_navigation_view_icon_tint_color">#666666</color>
+    <color name="black_color">#1E1E1E</color>
+    <color name="blue_color">#246BFD</color>
+    <color name="white_color">#FFFFFF</color>
+    <color name="gray_color">#666666</color>
 
 
-    <color name="toolbar_title_color">#1E1E1E</color>
-
-    <color name="newest_task_title">#FFFFFF</color>
     <color name="newest_task_short_description">#CEDEFF</color>
 
 
