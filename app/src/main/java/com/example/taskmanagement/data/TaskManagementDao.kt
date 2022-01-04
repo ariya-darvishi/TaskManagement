@@ -1,5 +1,6 @@
 package com.example.taskmanagement.data
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.example.taskmanagement.data.entities.SubTask
 import com.example.taskmanagement.data.entities.Task
@@ -24,21 +25,21 @@ interface TaskManagementDao {
     suspend fun updateSubTaskStatus(subTask: SubTask)
 
     @Query("SELECT * FROM Task")
-    fun getAllTasks(): Flow<List<Task>>
+    fun getAllTasks(): LiveData<List<Task>>
 
     @Query("SELECT * FROM Task ORDER BY taskId DESC LIMIT 1")
-    fun getNewestTask(): Flow<Task>
+    fun getNewestTask(): LiveData<Task>
 
     @Query("SELECT * FROM Task ORDER BY taskId DESC LIMIT 30 OFFSET 1")
-    fun getAllTasksMinusNewestTask(): Flow<List<Task>>
+    fun getAllTasksMinusNewestTask(): LiveData<List<Task>>
 
 
     @Transaction
     @Query("SELECT * FROM Task WHERE taskId = :taskId")
-    fun getTaskWithSubTasks(taskId: Int): Flow<List<TaskWithSubTasks>>
+    fun getTaskWithSubTasks(taskId: Int): LiveData<List<TaskWithSubTasks>>
 
     @Transaction
     @Query("SELECT * FROM Task WHERE taskId = :taskId")
-    fun getTaskWithUsers(taskId: Int): Flow<List<TaskWithUsers>>
+    fun getTaskWithUsers(taskId: Int): LiveData<List<TaskWithUsers>>
 
 }

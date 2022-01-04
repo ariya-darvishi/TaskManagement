@@ -12,8 +12,6 @@ import com.example.taskmanagement.data.entities.relations.TaskWithUsers
 import com.example.taskmanagement.repositories.TaskManagementRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -22,14 +20,11 @@ class MainViewModel @Inject constructor(
     private val repository: TaskManagementRepository
 ) : ViewModel() {
 
-    private var _allTasks: MutableLiveData<List<Task>> = MutableLiveData()
-    var allTasks: LiveData<List<Task>> = _allTasks
 
-    private var _newestTask: MutableLiveData<Task> = MutableLiveData()
-    var newestTask: LiveData<Task> = _newestTask
+    var allTasksMinusNewestTask: LiveData<List<Task>> = repository.getAllTasksMinusNewestTask()
+    var allTasks: LiveData<List<Task>> = repository.getAllTasks()
+    var newestTask: LiveData<Task> = repository.getNewestTask()
 
-    private var _allTasksMinusNewestTask: MutableLiveData<List<Task>> = MutableLiveData()
-    var allTasksMinusNewestTask: LiveData<List<Task>> = _allTasksMinusNewestTask
 
     private var _taskWithSubTasks: MutableLiveData<List<TaskWithSubTasks>> = MutableLiveData()
     var taskWithSubTasks: LiveData<List<TaskWithSubTasks>> = _taskWithSubTasks
@@ -54,41 +49,11 @@ class MainViewModel @Inject constructor(
         repository.updateSubTaskStatus(subTask)
     }
 
-    fun getAllTasks() =
-        viewModelScope.launch(Dispatchers.IO) {
-            repository.getAllTasks().collect {
-                _allTasks.postValue(it)
-            }
-        }
-
-    fun getNewestTask() =
-        viewModelScope.launch(Dispatchers.IO) {
-            repository.getNewestTask().collect {
-                _newestTask.postValue(it)
-            }
-        }
-
-    fun getAllTasksMinusNewestTask() =
-        viewModelScope.launch(Dispatchers.IO) {
-            repository.getAllTasksMinusNewestTask().collect {
-                _allTasksMinusNewestTask.postValue(it)
-            }
-        }
-
     fun getTaskWithSubTasks(taskId: Int) =
-        viewModelScope.launch(Dispatchers.IO) {
-            repository.getTaskWithSubTasks(taskId).collect {
-                _taskWithSubTasks.postValue(it)
-            }
-        }
+        repository.getTaskWithSubTasks(taskId)
 
     fun getTaskWithUsers(taskId: Int) =
-        viewModelScope.launch(Dispatchers.IO) {
-            repository.getTaskWithUsers(taskId).collect {
-                _taskWithUsers.postValue(it)
-            }
-        }
-
+        repository.getTaskWithUsers(taskId)
 
 }
 

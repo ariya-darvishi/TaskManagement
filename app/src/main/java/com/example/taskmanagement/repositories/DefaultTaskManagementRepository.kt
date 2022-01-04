@@ -1,5 +1,6 @@
 package com.example.taskmanagement.repositories
 
+import androidx.lifecycle.LiveData
 import com.example.taskmanagement.data.TaskManagementDao
 import com.example.taskmanagement.data.entities.SubTask
 import com.example.taskmanagement.data.entities.Task
@@ -27,17 +28,17 @@ class DefaultTaskManagementRepository(
         dao.updateSubTaskStatus(subTask)
     }
 
-    override fun getAllTasks(): Flow<List<Task>> = dao.getAllTasks()
+    override fun getAllTasks(): LiveData<List<Task>> = dao.getAllTasks()
 
 
-    override fun getNewestTask(): Flow<Task> = dao.getNewestTask()
+    override fun getNewestTask(): LiveData<Task> = dao.getNewestTask()
 
-    override fun getAllTasksMinusNewestTask(): Flow<List<Task>> =
+    override fun getAllTasksMinusNewestTask(): LiveData<List<Task>> =
         dao.getAllTasksMinusNewestTask()
 
-    override fun getTaskWithSubTasks(taskId: Int): Flow<List<TaskWithSubTasks>> =
+    override fun getTaskWithSubTasks(taskId: Int): LiveData<List<TaskWithSubTasks>> =
         dao.getTaskWithSubTasks(taskId)
 
-    override fun getTaskWithUsers(taskId: Int): Flow<List<TaskWithUsers>> =
+    override fun getTaskWithUsers(taskId: Int): LiveData<List<TaskWithUsers>> =
         dao.getTaskWithUsers(taskId)
 }

@@ -1,6 +1,7 @@
 package com.example.taskmanagement.repositories
 
 
+import androidx.lifecycle.LiveData
 import com.example.taskmanagement.data.entities.SubTask
 import com.example.taskmanagement.data.entities.Task
 import com.example.taskmanagement.data.entities.User
@@ -17,12 +18,12 @@ interface TaskManagementRepository {
     suspend fun updateSubTaskStatus(subTask: SubTask)
 
 
-    fun getAllTasks(): Flow<List<Task>>
-    fun getNewestTask(): Flow<Task>
-    fun getAllTasksMinusNewestTask(): Flow<List<Task>>
+    fun getAllTasks(): LiveData<List<Task>>
+    fun getNewestTask(): LiveData<Task>
+    fun getAllTasksMinusNewestTask(): LiveData<List<Task>>
 
 
-    fun getTaskWithSubTasks(taskId: Int): Flow<List<TaskWithSubTasks>>
-    fun getTaskWithUsers(taskId: Int): Flow<List<TaskWithUsers>>
+    fun getTaskWithSubTasks(taskId: Int): LiveData<List<TaskWithSubTasks>>
+    fun getTaskWithUsers(taskId: Int): LiveData<List<TaskWithUsers>>
 
 }
