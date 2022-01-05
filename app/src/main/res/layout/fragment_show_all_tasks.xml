@@ -5,6 +5,10 @@
 
     <data>
 
+        <variable
+            name="fragmentShowAllTasks"
+            type="com.example.taskmanagement.ui.fragments.onMainActivity.ShowAllTasksFragment" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -43,8 +47,8 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_search_gray" />
 
-            <AutoCompleteTextView
-                android:id="@+id/editTextTextPersonName"
+            <EditText
+                android:id="@+id/search_box_auto_complete_text_view"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginStart="4dp"
@@ -53,20 +57,22 @@
                 android:hint="Search..."
                 android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView3"
-                app:layout_constraintEnd_toStartOf="@+id/imageView4"
+                app:layout_constraintEnd_toStartOf="@+id/cleaner_search_input_text_image_view"
                 app:layout_constraintStart_toEndOf="@+id/imageView3"
                 app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
             <ImageView
-                android:id="@+id/imageView4"
+                android:id="@+id/cleaner_search_input_text_image_view"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
-                app:layout_constraintBottom_toBottomOf="@+id/editTextTextPersonName"
+                android:visibility="gone"
+                android:onClick="@{()-> fragmentShowAllTasks.cleanSearchInputText()}"
+                app:layout_constraintBottom_toBottomOf="@+id/search_box_auto_complete_text_view"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/editTextTextPersonName"
-                app:layout_constraintTop_toTopOf="@+id/editTextTextPersonName"
+                app:layout_constraintStart_toEndOf="@+id/search_box_auto_complete_text_view"
+                app:layout_constraintTop_toTopOf="@+id/search_box_auto_complete_text_view"
                 app:srcCompat="@drawable/ic_cancel" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -93,9 +99,10 @@
             android:id="@+id/search_task_cancel_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cancel"
+            android:text="Back to Home"
             android:textSize="16sp"
             android:textColor="@color/black_color"
+            android:onClick="@{(view)-> fragmentShowAllTasks.onBackToHomeClickListener(view)}"
             app:layout_constraintBottom_toBottomOf="@+id/constraintLayout4"
             app:layout_constraintEnd_toStartOf="@+id/right_guideline"
             app:layout_constraintTop_toTopOf="@+id/constraintLayout4" />
@@ -104,6 +111,20 @@
             android:id="@+id/show_all_tasks_recycler_view"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/right_guideline"
+            app:layout_constraintStart_toStartOf="@+id/left_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout4" />
+
+        <TextView
+            android:id="@+id/item_not_found_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Item not found!"
+            android:textStyle="bold"
+            android:textColor="@color/black_color"
+            android:textSize="20sp"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/right_guideline"
             app:layout_constraintStart_toStartOf="@+id/left_guideline"

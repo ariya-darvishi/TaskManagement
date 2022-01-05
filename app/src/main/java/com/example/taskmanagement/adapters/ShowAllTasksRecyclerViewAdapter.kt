@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.taskmanagement.R
 import com.example.taskmanagement.data.entities.Task
 import com.example.taskmanagement.databinding.RecyclerViewItemShowAllTasksBinding
+import android.annotation.SuppressLint
+
 
 class ShowAllTasksRecyclerViewAdapter :
     RecyclerView.Adapter<ShowAllTasksRecyclerViewAdapter.ShowAllTasksViewHolder>() {
@@ -38,6 +40,11 @@ class ShowAllTasksRecyclerViewAdapter :
         get() = differ.currentList
         set(value) = differ.submitList(value)
 
+    @SuppressLint("NotifyDataSetChanged")
+    fun updateData(newData: List<Task>) {
+        dataList = newData
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
