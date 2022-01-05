@@ -7,7 +7,7 @@
 
 <!--    android:layout_height="?attr/actionBarSize"-->
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/show_all_tasks_top_guideline"
+        android:id="@+id/top_guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -22,8 +22,8 @@
         android:layout_marginEnd="10dp"
         android:background="@drawable/gray_bg"
         app:layout_constraintEnd_toStartOf="@+id/search_task_cancel_btn"
-        app:layout_constraintStart_toStartOf="@+id/show_all_tasks_left_guideline"
-        app:layout_constraintTop_toTopOf="@+id/show_all_tasks_top_guideline">
+        app:layout_constraintStart_toStartOf="@+id/left_guideline"
+        app:layout_constraintTop_toTopOf="@+id/top_guideline">
 
         <ImageView
             android:id="@+id/imageView3"
@@ -66,7 +66,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/show_all_tasks_left_guideline"
+        android:id="@+id/left_guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -75,7 +75,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/show_all_tasks_right_guideline"
+        android:id="@+id/right_guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -91,7 +91,7 @@
         android:textSize="16sp"
         android:textColor="@color/black_color"
         app:layout_constraintBottom_toBottomOf="@+id/constraintLayout4"
-        app:layout_constraintEnd_toStartOf="@+id/show_all_tasks_right_guideline"
+        app:layout_constraintEnd_toStartOf="@+id/right_guideline"
         app:layout_constraintTop_toTopOf="@+id/constraintLayout4" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -100,8 +100,8 @@
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/show_all_tasks_right_guideline"
-        app:layout_constraintStart_toStartOf="@+id/show_all_tasks_left_guideline"
+        app:layout_constraintEnd_toStartOf="@+id/right_guideline"
+        app:layout_constraintStart_toStartOf="@+id/left_guideline"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout4" />
 
 

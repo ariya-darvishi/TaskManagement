@@ -52,8 +52,8 @@
                     android:paddingRight="10dp"
                     android:paddingBottom="5dp"
                     android:textSize="14sp"
-                    app:layout_constraintEnd_toStartOf="@+id/guideline3"
-                    app:layout_constraintStart_toStartOf="@+id/guideline2"
+                    app:layout_constraintEnd_toStartOf="@+id/right_guideline"
+                    app:layout_constraintStart_toStartOf="@+id/left_guideline"
                     app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -71,20 +71,20 @@
                     android:paddingBottom="5dp"
                     android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="@+id/textView3"
-                    app:layout_constraintEnd_toStartOf="@+id/guideline3"
+                    app:layout_constraintEnd_toStartOf="@+id/right_guideline"
                     app:layout_constraintStart_toEndOf="@+id/textView3"
                     app:layout_constraintTop_toTopOf="@+id/textView3" />
 
 
                 <androidx.constraintlayout.widget.Guideline
-                    android:id="@+id/guideline2"
+                    android:id="@+id/left_guideline"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     app:layout_constraintGuide_begin="20dp" />
 
                 <androidx.constraintlayout.widget.Guideline
-                    android:id="@+id/guideline3"
+                    android:id="@+id/right_guideline"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
@@ -96,7 +96,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
                     android:text="Task Title:"
-                    app:layout_constraintStart_toStartOf="@+id/guideline2"
+                    app:layout_constraintStart_toStartOf="@+id/left_guideline"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
@@ -105,13 +105,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="32dp"
                     android:text="short description:"
-                    app:layout_constraintStart_toStartOf="@+id/guideline2"
+                    app:layout_constraintStart_toStartOf="@+id/left_guideline"
                     app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toStartOf="@+id/guideline3"
+                    app:layout_constraintEnd_toStartOf="@+id/right_guideline"
                     app:layout_constraintStart_toEndOf="@+id/textView2"
                     app:layout_constraintTop_toTopOf="parent">
 
@@ -133,7 +133,7 @@
                     android:paddingBottom="5dp"
                     android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="@+id/textView2"
-                    app:layout_constraintEnd_toStartOf="@+id/guideline3"
+                    app:layout_constraintEnd_toStartOf="@+id/right_guideline"
                     app:layout_constraintStart_toEndOf="@+id/textView2"
                     app:layout_constraintTop_toTopOf="@+id/textView2" />
 
@@ -142,7 +142,7 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_marginTop="24dp"
-                    app:layout_constraintStart_toStartOf="@+id/guideline2"
+                    app:layout_constraintStart_toStartOf="@+id/left_guideline"
                     app:layout_constraintTop_toBottomOf="@+id/task_description_barrier"
                     app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
                     app:srcCompat="@drawable/amirreza_darvishi"
@@ -224,7 +224,7 @@
                     android:textColor="#666666"
                     android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="@+id/constraintLayout2"
-                    app:layout_constraintEnd_toStartOf="@+id/guideline3"
+                    app:layout_constraintEnd_toStartOf="@+id/right_guideline"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toEndOf="@+id/constraintLayout2"
                     app:layout_constraintTop_toTopOf="@+id/constraintLayout2"
@@ -240,7 +240,7 @@
                     android:textSize="13sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@+id/constraintLayout2"
-                    app:layout_constraintEnd_toStartOf="@+id/guideline3"
+                    app:layout_constraintEnd_toStartOf="@+id/right_guideline"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toEndOf="@+id/constraintLayout2"
                     app:layout_constraintTop_toTopOf="@+id/constraintLayout2"
@@ -264,7 +264,7 @@
                     android:text="Add Task Description"
                     android:textColor="#1E1E1E"
                     android:textSize="13sp"
-                    app:layout_constraintStart_toStartOf="@+id/guideline2"
+                    app:layout_constraintStart_toStartOf="@+id/left_guideline"
                     app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
                 <com.google.android.material.button.MaterialButton
@@ -284,8 +284,8 @@
                     android:textColor="@color/white_color"
                     android:textSize="17sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/guideline3"
-                    app:layout_constraintStart_toStartOf="@+id/guideline2"
+                    app:layout_constraintEnd_toStartOf="@+id/right_guideline"
+                    app:layout_constraintStart_toStartOf="@+id/left_guideline"
                     app:layout_constraintTop_toBottomOf="@+id/create_task_input_description"
                     app:layout_constraintVertical_bias="0.0"
                     tools:ignore="HardcodedText" />
