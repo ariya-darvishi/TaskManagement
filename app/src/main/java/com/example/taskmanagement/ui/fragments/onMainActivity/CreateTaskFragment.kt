@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
 import com.example.taskmanagement.R
 import com.example.taskmanagement.data.entities.Task
 import com.example.taskmanagement.databinding.FragmentCreateTaskBinding
@@ -52,7 +53,7 @@ class CreateTaskFragment : BaseFragment() {
                 toolbarTitle.text = "Create Task"
 
                 toolbarBackBtn.setOnClickListener {
-                    navController.navigate(R.id.homeFragment)
+                    Navigation.findNavController(it).popBackStack()
                 }
             }
 
