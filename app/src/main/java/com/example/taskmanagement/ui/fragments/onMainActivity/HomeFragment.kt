@@ -41,8 +41,11 @@ class HomeFragment : Fragment() {
     private fun showNewestTask() {
         viewModel.newestTask.observe(viewLifecycleOwner, Observer {
             if (it!= null) {
+                binding.newestTaskMainLayout.visibility = View.VISIBLE
                 binding.newestTaskTitle.text = it.taskTitle
                 binding.newestTaskShortDescription.text = it.shortDescription
+            }else{
+                binding.newestTaskMainLayout.visibility = View.GONE
             }
         })
     }
