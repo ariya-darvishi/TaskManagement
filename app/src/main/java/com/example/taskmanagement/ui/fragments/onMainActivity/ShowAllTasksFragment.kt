@@ -13,6 +13,7 @@ import com.example.taskmanagement.R
 import com.example.taskmanagement.adapters.ShowAllTasksRecyclerViewAdapter
 import com.example.taskmanagement.databinding.FragmentShowAllTasksBinding
 import com.example.taskmanagement.utils.RecyclerViewMarginItemDecoration
+import com.example.taskmanagement.utils.setupRecyclerView
 import com.example.taskmanagement.viewModels.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -38,19 +39,17 @@ class ShowAllTasksFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel.allTasks.observe(viewLifecycleOwner, Observer {
             recyclerAdapter.differ.submitList(it)
-            setupRecyclerView()
+            initRecyclerView()
+
         })
     }
 
-    private fun setupRecyclerView() {
-            binding.showAllTasksRecyclerView.apply {
-                adapter = recyclerAdapter
-                addItemDecoration(
-                    RecyclerViewMarginItemDecoration(20))
-                layoutManager =
-                    LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-            }
-
+    private fun initRecyclerView() {
+        binding.showAllTasksRecyclerView.setupRecyclerView(
+            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false),
+            recyclerAdapter,
+            RecyclerViewMarginItemDecoration(20)
+        )
     }
 
 }
