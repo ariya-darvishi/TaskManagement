@@ -19,12 +19,14 @@
         <entry key="app/src/main/res/drawable/circle_calendar_blue_bg.xml" value="0.12129629629629629" />
         <entry key="app/src/main/res/drawable/gradiant_top_of_navigation_bottom_view.xml" value="0.1037037037037037" />
         <entry key="app/src/main/res/drawable/gradientbackground.xml" value="0.10740740740740741" />
+        <entry key="app/src/main/res/drawable/gray_bg.xml" value="0.11388888888888889" />
         <entry key="app/src/main/res/drawable/ic_add.xml" value="0.10740740740740741" />
         <entry key="app/src/main/res/drawable/ic_add_user.xml" value="0.12777777777777777" />
         <entry key="app/src/main/res/drawable/ic_back.xml" value="0.10740740740740741" />
         <entry key="app/src/main/res/drawable/ic_back_page.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_backpage.xml" value="0.10740740740740741" />
         <entry key="app/src/main/res/drawable/ic_calendar.xml" value="0.12129629629629629" />
+        <entry key="app/src/main/res/drawable/ic_cancel.xml" value="0.11388888888888889" />
         <entry key="app/src/main/res/drawable/ic_chat.xml" value="0.10740740740740741" />
         <entry key="app/src/main/res/drawable/ic_create_task.xml" value="0.10740740740740741" />
         <entry key="app/src/main/res/drawable/ic_home.xml" value="0.1824074074074074" />
@@ -34,6 +36,7 @@
         <entry key="app/src/main/res/drawable/ic_next3.xml" value="0.10208333333333333" />
         <entry key="app/src/main/res/drawable/ic_next_chip.xml" value="0.10208333333333333" />
         <entry key="app/src/main/res/drawable/ic_search.xml" value="0.10740740740740741" />
+        <entry key="app/src/main/res/drawable/ic_search_gray.xml" value="0.11388888888888889" />
         <entry key="app/src/main/res/drawable/ic_setting.xml" value="1.0" />
         <entry key="app/src/main/res/drawable/ic_settings.xml" value="0.10740740740740741" />
         <entry key="app/src/main/res/drawable/ic_splash.xml" value="1.0" />
@@ -65,7 +68,7 @@
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.11775362318840579" />
         <entry key="app/src/main/res/layout/fragment_select_login_or_signup_page.xml" value="0.11775362318840579" />
         <entry key="app/src/main/res/layout/fragment_setting.xml" value="0.11775362318840579" />
-        <entry key="app/src/main/res/layout/fragment_show_all_tasks.xml" value="0.11775362318840579" />
+        <entry key="app/src/main/res/layout/fragment_show_all_tasks.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_signup.xml" value="0.11775362318840579" />
         <entry key="app/src/main/res/layout/fragment_task_detail.xml" value="0.11775362318840579" />
         <entry key="app/src/main/res/menu/menu_bottom_navigation_view.xml" value="0.14537037037037037" />

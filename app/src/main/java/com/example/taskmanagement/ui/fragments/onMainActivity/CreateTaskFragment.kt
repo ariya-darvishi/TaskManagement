@@ -119,7 +119,7 @@ class CreateTaskFragment : BaseFragment() {
     private fun clearDangerBackground(view: TextInputEditText){
         view.background = ContextCompat.getDrawable(
             requireContext(),
-            R.drawable.text_input_edit_text_bg
+            R.drawable.gray_bg
         )
     }
 
