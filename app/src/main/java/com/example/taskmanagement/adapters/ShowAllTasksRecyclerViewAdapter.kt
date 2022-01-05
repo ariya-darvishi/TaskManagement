@@ -1,19 +1,20 @@
 package com.example.taskmanagement.adapters
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.taskmanagement.R
 import com.example.taskmanagement.data.entities.Task
+import com.example.taskmanagement.databinding.RecyclerViewItemShowAllTasksBinding
 
 class ShowAllTasksRecyclerViewAdapter :
     RecyclerView.Adapter<ShowAllTasksRecyclerViewAdapter.ShowAllTasksViewHolder>() {
 
-    inner class ShowAllTasksViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+     class ShowAllTasksViewHolder(binding : RecyclerViewItemShowAllTasksBinding) : RecyclerView.ViewHolder(binding.root)
 
     private val diffCallback = object : DiffUtil.ItemCallback<Task>() {
         override fun areItemsTheSame(
@@ -42,16 +43,17 @@ class ShowAllTasksRecyclerViewAdapter :
         parent: ViewGroup,
         viewType: Int
     ): ShowAllTasksRecyclerViewAdapter.ShowAllTasksViewHolder {
-        return ShowAllTasksViewHolder(
-            LayoutInflater.from(parent.context).inflate(
+        val recyclerViewItemShowAllTasks : RecyclerViewItemShowAllTasksBinding =
+            DataBindingUtil.inflate(LayoutInflater.from(parent.context),
                 R.layout.recycler_view_item_show_all_tasks,
                 parent,
                 false
             )
-        )
+        return ShowAllTasksViewHolder(recyclerViewItemShowAllTasks )
     }
 
     override fun getItemCount(): Int {
+//        return dataList.size
         return dataList.size
     }
 
