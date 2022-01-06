@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.Navigation
 import com.example.taskmanagement.R
 import com.example.taskmanagement.databinding.FragmentTaskDetailBinding
 
@@ -41,7 +42,7 @@ class TaskDetailFragment : BaseFragment() {
                 toolbarTitle.text = "Task Details"
 
                 toolbarBackBtn.setOnClickListener {
-                    navController.navigate(R.id.homeFragment)
+                    Navigation.findNavController(it).popBackStack()
                 }
             }
 
