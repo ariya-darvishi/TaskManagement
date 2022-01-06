@@ -22,7 +22,11 @@
         android:id="@+id/taskDetailFragment"
         tools:layout="@layout/fragment_task_detail"
         android:name="com.example.taskmanagement.ui.fragments.onMainActivity.TaskDetailFragment"
-        android:label="TaskDetailFragment" />
+        android:label="TaskDetailFragment" >
+        <argument
+            android:name="task"
+            app:argType="com.example.taskmanagement.data.entities.Task" />
+    </fragment>
     <fragment
         android:id="@+id/createTaskFragment"
         tools:layout="@layout/fragment_create_task"

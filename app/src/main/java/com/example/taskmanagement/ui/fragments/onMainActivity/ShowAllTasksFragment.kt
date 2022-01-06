@@ -22,6 +22,7 @@ import android.text.Editable
 import android.view.inputmethod.InputMethodManager
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView.AdapterDataObserver
 import com.example.taskmanagement.data.entities.Task
 import java.util.*
@@ -55,6 +56,7 @@ class ShowAllTasksFragment : Fragment() {
 
         setupSearchBox()
         getAllTasks()
+        setOnItemClickListenerForRecyclerView()
 
 
     }
@@ -117,6 +119,19 @@ class ShowAllTasksFragment : Fragment() {
             initRecyclerView()
 
         })
+    }
+
+    private fun setOnItemClickListenerForRecyclerView() {
+        recyclerAdapter.setOnItemClickListener {
+            val bundle = Bundle().apply {
+                putParcelable("task", it)
+            }
+            findNavController().navigate(
+                R.id.action_showAllTasksFragment_to_taskDetailFragment,
+                bundle
+            )
+            cleanSearchInputText()
+        }
     }
 
     private fun initRecyclerView() {
