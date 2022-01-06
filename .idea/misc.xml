@@ -70,7 +70,7 @@
         <entry key="app/src/main/res/layout/fragment_setting.xml" value="0.11775362318840579" />
         <entry key="app/src/main/res/layout/fragment_show_all_tasks.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_signup.xml" value="0.11775362318840579" />
-        <entry key="app/src/main/res/layout/fragment_task_detail.xml" value="0.11775362318840579" />
+        <entry key="app/src/main/res/layout/fragment_task_detail.xml" value="0.28651685393258425" />
         <entry key="app/src/main/res/layout/recycler_view_item_show_all_tasks.xml" value="0.25" />
         <entry key="app/src/main/res/layout/recycler_view_item_show_all_tasks_minus_newest_task.xml" value="0.22" />
         <entry key="app/src/main/res/menu/menu_bottom_navigation_view.xml" value="0.14537037037037037" />
