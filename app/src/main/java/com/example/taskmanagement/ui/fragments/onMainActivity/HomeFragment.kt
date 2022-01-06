@@ -60,7 +60,7 @@ class HomeFragment : Fragment() {
         binding.allTasksMinusNewestTaskRecyclerView.setupRecyclerView(
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false),
             recyclerAdapter,
-            RecyclerViewMarginItemDecoration(20)
+            RecyclerViewMarginItemDecoration(20, 20, 0, 0)
         )
     }
     private fun showNewestTask() {
