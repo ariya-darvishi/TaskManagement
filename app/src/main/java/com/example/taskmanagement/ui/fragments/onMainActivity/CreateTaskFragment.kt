@@ -75,11 +75,11 @@ class CreateTaskFragment : BaseFragment() {
                     view.shortSnackBar("Pleas Enter Task Short Description...")
                 } else {
                     clearDangerBackground(this.createTaskInputShortDescription)
-                    if (this.createTaskInputDescription.text.isNullOrBlank()) {
-                        changeBackgroundLayoutToDangerousLayout(this.createTaskInputDescription)
+                    if (this.taskDescription.text.isNullOrBlank()) {
+                        changeBackgroundLayoutToDangerousLayout(this.taskDescription)
                         view.shortSnackBar("Pleas Enter Task Description...")
                     } else {
-                        clearDangerBackground(this.createTaskInputDescription)
+                        clearDangerBackground(this.taskDescription)
 
                         insertTaskToDatabase(view)
 
@@ -95,7 +95,7 @@ class CreateTaskFragment : BaseFragment() {
 
         val taskTitle = binding.createTaskInputTitle.text.toString()
         val taskShortDescription = binding.createTaskInputShortDescription.text.toString()
-        val taskDescription = binding.createTaskInputDescription.text.toString()
+        val taskDescription = binding.taskDescription.text.toString()
 
         val newTask = Task(
             0,
@@ -113,7 +113,7 @@ class CreateTaskFragment : BaseFragment() {
     private fun clearUserInputText() {
         binding.createTaskInputTitle.text?.clear()
         binding.createTaskInputShortDescription.text?.clear()
-        binding.createTaskInputDescription.text?.clear()
+        binding.taskDescription.text?.clear()
 
     }
 
