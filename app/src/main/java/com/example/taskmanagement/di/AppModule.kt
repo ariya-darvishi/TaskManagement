@@ -2,6 +2,9 @@ package com.example.taskmanagement.di
 
 import android.content.Context
 import androidx.room.Room
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
+import com.example.taskmanagement.R
 import com.example.taskmanagement.data.TaskManagementDao
 import com.example.taskmanagement.data.TaskManagementDatabase
 import com.example.taskmanagement.repositories.DefaultTaskManagementRepository
@@ -41,5 +44,15 @@ object AppModule {
     fun provideRepository(
         dao: TaskManagementDao
     )  = DefaultTaskManagementRepository(dao) as TaskManagementRepository
+
+    @Singleton
+    @Provides
+    fun provideGlideInstance(
+        @ApplicationContext context: Context
+    ) = Glide.with(context).setDefaultRequestOptions(
+        RequestOptions()
+            .placeholder(R.drawable.ic_launcher_background)
+            .error(R.drawable.ic_launcher_foreground)
+    )
 
 }
