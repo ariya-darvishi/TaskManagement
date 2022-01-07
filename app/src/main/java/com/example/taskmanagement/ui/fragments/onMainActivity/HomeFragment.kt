@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.taskmanagement.R
 import com.example.taskmanagement.adapters.ShowAllTasksMinusNewestTaskRecyclerViewAdapter
 import com.example.taskmanagement.adapters.ShowAllTasksRecyclerViewAdapter
+import com.example.taskmanagement.data.entities.Task
 import com.example.taskmanagement.databinding.FragmentHomeBinding
 import com.example.taskmanagement.utils.RecyclerViewMarginItemDecoration
 import com.example.taskmanagement.utils.setupRecyclerView
@@ -27,6 +28,7 @@ class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private val viewModel: MainViewModel by viewModels()
     private val recyclerAdapter = ShowAllTasksMinusNewestTaskRecyclerViewAdapter()
+    private var newestTask : Task?= null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -80,6 +82,7 @@ class HomeFragment : Fragment() {
     }
     private fun showNewestTask() {
         viewModel.newestTask.observe(viewLifecycleOwner, Observer {
+            newestTask = it
             if (it != null) {
                 binding.newestTaskMainLayout.visibility = View.VISIBLE
                 binding.newestTaskTitle.text = it.taskTitle
@@ -92,6 +95,16 @@ class HomeFragment : Fragment() {
 
     fun onSeeAllTasksClickListener(view: View) {
         view.findNavController().navigate(R.id.action_homeFragment_to_showAllTasksFragment)
+    }
+
+    fun onDetailsNewestTaskClickListener(view: View){
+        val bundle = Bundle().apply {
+            putParcelable("task", newestTask)
+        }
+        view.findNavController().navigate(
+            R.id.action_homeFragment_to_taskDetailFragment,
+            bundle
+        )
     }
 
 }

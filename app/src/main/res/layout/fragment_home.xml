@@ -50,7 +50,7 @@
             tools:ignore="MissingConstraints">
 
             <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/imageView"
+                android:id="@+id/user_image"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -134,6 +134,7 @@
                     app:chipStartPadding="0dp"
                     app:chipStrokeColor="@color/white"
                     app:chipSurfaceColor="@color/white"
+                    android:onClick="@{(view)-> fragmentHome.onDetailsNewestTaskClickListener(view)}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/newest_task_left_guideline"
                     app:layout_constraintTop_toBottomOf="@+id/newest_task_short_description"

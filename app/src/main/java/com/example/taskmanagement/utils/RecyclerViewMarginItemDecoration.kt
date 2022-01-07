@@ -17,12 +17,20 @@ class RecyclerViewMarginItemDecoration(
         parent: RecyclerView,
         state: RecyclerView.State
     ) {
+//        val childCount = parent.childCount
+        val itemPosition = parent.getChildAdapterPosition(view)
+        val itemCount = state.itemCount
+
         with(outRect) {
-            if (parent.getChildAdapterPosition(view) == 0) {
+            if (itemPosition == 0) {
                 top = topMargin
             }
+            right = if (itemCount > 0 && itemPosition == itemCount - 1) {
+                0
+            }else{
+                rightMargin
+            }
             left = leftMargin
-            right = rightMargin
             bottom = bottomMargin
         }
     }

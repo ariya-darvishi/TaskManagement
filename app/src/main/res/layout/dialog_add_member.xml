@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="340dp"
+    app:layout_constraintCircleRadius="30dp"
+    app:circularflow_radiusInDP="30"
+    app:circularflow_defaultRadius="30dp"
+    style="@style/Theme.AlertDialog"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/header"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="افزودن کالا به لیست محصولات"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
+        android:layout_marginRight="8dp"
+        android:text="نام کالا :"
+        app:layout_constraintLeft_toRightOf="@+id/add_product_name"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/header" />
+
+    <EditText
+        android:id="@+id/add_product_name"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="8dp"
+        android:ems="10"
+        android:hint="نام کالا را وارد نمایید..."
+        android:inputType="textPersonName"
+        android:layoutDirection="rtl"
+        android:padding="5dp"
+        android:paddingRight="16dp"
+        android:textDirection="rtl"
+        android:textSize="13sp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/textView15"
+        app:layout_constraintTop_toBottomOf="@+id/header"
+        tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="12dp"
+        android:text="مقدار:"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add_product_name" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintRight_toLeftOf="@+id/textView16"
+        app:layout_constraintTop_toBottomOf="@+id/add_product_name"/>
+
+    <TextView
+        android:id="@+id/add_product_amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        android:text="12"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintRight_toLeftOf="@+id/imageView2"
+        app:layout_constraintTop_toBottomOf="@+id/add_product_name" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintRight_toLeftOf="@+id/add_product_amount"
+        app:layout_constraintTop_toBottomOf="@+id/add_product_name"/>
+
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="32dp"
+        android:text="واحد:"
+        app:layout_constraintEnd_toStartOf="@+id/imageView3"
+        app:layout_constraintLeft_toRightOf="@+id/add_product_unit"
+        app:layout_constraintTop_toBottomOf="@+id/add_product_name" />
+
+    <EditText
+        android:id="@+id/add_product_unit"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginRight="16dp"
+        android:ems="10"
+        android:hint="واحد کالا را وارد نمایید..."
+        android:inputType="textPersonName"
+        android:layoutDirection="rtl"
+        android:padding="5dp"
+        android:paddingRight="5dp"
+        android:textDirection="rtl"
+        android:textSize="11sp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/textView18"
+        app:layout_constraintTop_toBottomOf="@+id/add_product_name"
+        tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry,TextViewEdits" />
+
+    <TextView
+        android:id="@+id/textView26"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:layout_marginRight="16dp"
+        android:text="قیمت (ریال):"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageView2"
+        tools:ignore="HardcodedText,RtlHardcoded" />
+
+    <EditText
+        android:id="@+id/add_product_price"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginRight="8dp"
+        android:ems="10"
+        android:hint="قیمت هر واحد کالا را وارد نمایید..."
+        android:inputType="number"
+        android:layoutDirection="rtl"
+        android:padding="5dp"
+        android:paddingRight="16dp"
+        android:textDirection="rtl"
+        android:textSize="13sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/textView26"
+        app:layout_constraintTop_toBottomOf="@id/imageView2"
+        tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />
+
+
+    <!--    <EditText-->
+    <!--        android:id="@+id/dwed"-->
+    <!--        android:layout_width="0dp"-->
+    <!--        android:layout_height="40dp"-->
+    <!--        android:background="@drawable/search_bg"-->
+    <!--        android:ems="10"-->
+    <!--        android:hint="واحد کالا را وارد نمایید..."-->
+    <!--        android:inputType="number"-->
+    <!--        android:layoutDirection="rtl"-->
+    <!--        android:padding="5dp"-->
+    <!--        android:paddingRight="16dp"-->
+    <!--        android:textDirection="rtl"-->
+    <!--        android:textSize="13sp"-->
+    <!--        tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry"-->
+    <!--        tools:layout_editor_absoluteX="8dp"-->
+    <!--        tools:layout_editor_absoluteY="153dp" />-->
+
+    <Button
+        android:id="@+id/tvSaveTodo"
+        style="@style/Widget.MaterialComponents.Button.Icon"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="16dp"
+        android:text="افزودن کالا"
+        android:textAlignment="center"
+        android:textDirection="rtl"
+        android:gravity="center"
+        android:textSize="12sp"
+        app:backgroundTint="@null"
+        app:iconGravity="end"
+        app:iconSize="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/tvCancel"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add_product_price"
+        app:layout_constraintVertical_bias="0.0" />
+
+
+    <Button
+        android:id="@+id/tvCancel"
+        style="@style/Widget.MaterialComponents.Button.Icon"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginBottom="16dp"
+        android:text="انصراف و بازگشت"
+        android:textAlignment="center"
+        android:textDirection="rtl"
+        android:textSize="10sp"
+        app:backgroundTint="@null"
+        app:iconGravity="start"
+        app:iconSize="27dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/tvSaveTodo"
+        app:layout_constraintTop_toBottomOf="@+id/add_product_price"
+        app:layout_constraintVertical_bias="0.0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

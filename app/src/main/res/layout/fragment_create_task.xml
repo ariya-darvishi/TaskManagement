@@ -138,7 +138,7 @@
                     app:layout_constraintTop_toTopOf="@+id/textView2" />
 
                 <com.google.android.material.imageview.ShapeableImageView
-                    android:id="@+id/imageView"
+                    android:id="@+id/user_image"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_marginTop="24dp"
@@ -165,11 +165,11 @@
                     android:text="Assigned to"
                     android:textColor="#666666"
                     android:textSize="12sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/imageView"
+                    app:layout_constraintBottom_toBottomOf="@+id/user_image"
                     app:layout_constraintEnd_toStartOf="@+id/middle_page_barrier"
                     app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toEndOf="@+id/imageView"
-                    app:layout_constraintTop_toTopOf="@+id/imageView"
+                    app:layout_constraintStart_toEndOf="@+id/user_image"
+                    app:layout_constraintTop_toTopOf="@+id/user_image"
                     app:layout_constraintVertical_bias="0.100000024" />
 
                 <TextView
@@ -181,11 +181,11 @@
                     android:textColor="#1E1E1E"
                     android:textSize="13sp"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@+id/imageView"
+                    app:layout_constraintBottom_toBottomOf="@+id/user_image"
                     app:layout_constraintEnd_toStartOf="@+id/middle_page_barrier"
                     app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toEndOf="@+id/imageView"
-                    app:layout_constraintTop_toTopOf="@+id/imageView"
+                    app:layout_constraintStart_toEndOf="@+id/user_image"
+                    app:layout_constraintTop_toTopOf="@+id/user_image"
                     app:layout_constraintVertical_bias="0.9" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -265,7 +265,7 @@
                     android:textColor="#1E1E1E"
                     android:textSize="13sp"
                     app:layout_constraintStart_toStartOf="@+id/left_guideline"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView" />
+                    app:layout_constraintTop_toBottomOf="@+id/user_image" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/create_task_btn"

@@ -100,7 +100,7 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.imageview.ShapeableImageView
-                    android:id="@+id/imageView"
+                    android:id="@+id/user_image"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_marginTop="24dp"
@@ -126,11 +126,11 @@
                     android:text="Assigned to"
                     android:textColor="@color/gray_color"
                     android:textSize="12sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/imageView"
+                    app:layout_constraintBottom_toBottomOf="@+id/user_image"
                     app:layout_constraintEnd_toStartOf="@+id/middle_page_barrier"
                     app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toEndOf="@+id/imageView"
-                    app:layout_constraintTop_toTopOf="@+id/imageView"
+                    app:layout_constraintStart_toEndOf="@+id/user_image"
+                    app:layout_constraintTop_toTopOf="@+id/user_image"
                     app:layout_constraintVertical_bias="0.100000024" />
 
                 <TextView
@@ -142,11 +142,11 @@
                     android:textColor="@color/black_color"
                     android:textSize="13sp"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@+id/imageView"
+                    app:layout_constraintBottom_toBottomOf="@+id/user_image"
                     app:layout_constraintEnd_toStartOf="@+id/middle_page_barrier"
                     app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toEndOf="@+id/imageView"
-                    app:layout_constraintTop_toTopOf="@+id/imageView"
+                    app:layout_constraintStart_toEndOf="@+id/user_image"
+                    app:layout_constraintTop_toTopOf="@+id/user_image"
                     app:layout_constraintVertical_bias="0.9" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -226,7 +226,7 @@
                     android:textColor="@color/black_color"
                     android:textSize="15sp"
                     app:layout_constraintStart_toStartOf="@+id/left_guideline"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView" />
+                    app:layout_constraintTop_toBottomOf="@+id/user_image" />
 
                 <androidx.constraintlayout.widget.Barrier
                     android:id="@+id/description_barrier"
@@ -237,7 +237,7 @@
                     tools:layout_editor_absoluteY="191dp" />
 
                 <TextView
-                    android:id="@+id/textView11"
+                    android:id="@+id/team_member_text_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="32dp"
@@ -248,7 +248,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/description_barrier" />
 
                 <TextView
-                    android:id="@+id/textView12"
+                    android:id="@+id/today_update_text_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="32dp"
@@ -260,29 +260,32 @@
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/task_members_recycler_view"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="40dp"
                     android:orientation="horizontal"
+                    android:visibility="invisible"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintEnd_toStartOf="@+id/work_progress_progress_bar"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/left_guideline"
-                    app:layout_constraintTop_toBottomOf="@+id/textView11" />
+                    app:layout_constraintTop_toBottomOf="@+id/team_member_text_view" />
 
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/add_member_image_view"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:clickable="true"
+                    android:onClick="@{(view)-> fragmentTaskDetail.onAddMemberClickListener(view)}"
                     app:layout_constraintBottom_toBottomOf="@+id/task_members_recycler_view"
                     app:layout_constraintEnd_toEndOf="@+id/task_members_recycler_view"
                     app:layout_constraintStart_toEndOf="@+id/task_members_recycler_view"
                     app:layout_constraintTop_toTopOf="@+id/task_members_recycler_view"
+                    app:layout_constraintVertical_bias="1.0"
                     app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
                     app:srcCompat="@drawable/ic_add_user"
-                    app:strokeColor="@color/white_color"
-                    app:strokeWidth="1dp" />
+                    app:strokeColor="@color/white_color" />
 
                 <ProgressBar
                     android:id="@+id/work_progress_progress_bar"
@@ -300,7 +303,7 @@
                     android:layout_marginTop="8dp"
                     app:layout_constraintEnd_toStartOf="@+id/right_guideline"
                     app:layout_constraintStart_toStartOf="@+id/left_guideline"
-                    app:layout_constraintTop_toBottomOf="@+id/textView12" />
+                    app:layout_constraintTop_toBottomOf="@+id/today_update_text_view" />
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/insert_new_sub_task_edit_text"
@@ -327,19 +330,33 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/add_new_sub_task_btn"
+                    style="@style/Widget.MaterialComponents.Button.Icon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Add new task"
-                    app:backgroundTint="@null"
                     android:background="@drawable/button_blue_bg"
-                    style="@style/Widget.MaterialComponents.Button.Icon"
+                    android:text="Add new task"
                     android:textAllCaps="false"
                     android:textColor="@color/white_color"
                     android:textSize="13sp"
+                    app:backgroundTint="@null"
                     app:layout_constraintBottom_toBottomOf="@+id/insert_new_sub_task_edit_text"
                     app:layout_constraintEnd_toStartOf="@+id/right_guideline"
                     app:layout_constraintTop_toTopOf="@+id/insert_new_sub_task_edit_text" />
 
+                <TextView
+                    android:id="@+id/not_any_member_joined"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Please click + to\n join member."
+                    android:textColor="@color/gray_color"
+                    android:textSize="12sp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="@+id/add_member_image_view"
+                    app:layout_constraintEnd_toStartOf="@+id/work_progress_progress_bar"
+                    app:layout_constraintStart_toEndOf="@+id/add_member_image_view"
+                    app:layout_constraintTop_toTopOf="@+id/add_member_image_view"
+                    app:layout_constraintVertical_bias="1.0" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
