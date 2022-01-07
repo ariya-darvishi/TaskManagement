@@ -28,7 +28,12 @@ class DefaultTaskManagementRepository(
         dao.updateSubTaskStatus(subTask)
     }
 
+    override suspend fun updateUser(user: User) {
+        dao.updateUser(user)
+    }
+
     override fun getAllTasks(): LiveData<List<Task>> = dao.getAllTasks()
+    override fun getAllUsers(): LiveData<List<User>> = dao.getAllUsers()
 
 
     override fun getNewestTask(): LiveData<Task> = dao.getNewestTask()
