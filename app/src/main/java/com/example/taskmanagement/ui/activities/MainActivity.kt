@@ -47,9 +47,7 @@ class MainActivity : AppCompatActivity() {
             User(0, "Parisa", "8", R.drawable.ic_user_8, null),
         )
         lifecycleScope.launch() {
-            withContext(IO) {
                 users.forEach { viewModel.insertUser(it) }
-            }
         }
     }
 

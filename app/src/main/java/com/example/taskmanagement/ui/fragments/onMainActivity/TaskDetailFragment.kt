@@ -22,8 +22,7 @@ import com.example.taskmanagement.utils.setupRecyclerView
 import com.example.taskmanagement.viewModels.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import android.graphics.LightingColorFilter
-
-
+import androidx.core.view.size
 
 
 @AndroidEntryPoint
@@ -66,9 +65,6 @@ class TaskDetailFragment : BaseFragment() {
 
     private fun showTaskMembers() {
         viewModel.getTaskWithUsers(taskId!!).observe(viewLifecycleOwner, Observer {
-//            if (it.isEmpty()) {
-//                binding.notAnyMemberJoined.visibility = View.VISIBLE
-//            } else {
             it.forEach {
                 if (it.users.isEmpty()) {
                     binding.notAnyMemberJoined.visibility = View.VISIBLE
@@ -77,7 +73,6 @@ class TaskDetailFragment : BaseFragment() {
                     initRecyclerView()
                 }
             }
-//            }
 
         })
     }
