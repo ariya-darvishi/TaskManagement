@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -21,8 +20,6 @@ import com.example.taskmanagement.utils.longSnackBar
 import com.example.taskmanagement.utils.setupRecyclerView
 import com.example.taskmanagement.viewModels.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import android.graphics.LightingColorFilter
-import androidx.core.view.size
 
 
 @AndroidEntryPoint
@@ -31,8 +28,9 @@ class TaskDetailFragment : BaseFragment() {
     private val recyclerAdapter = TaskMembersRecyclerViewAdapter()
     private lateinit var binding: FragmentTaskDetailBinding
     private val viewModel: MainViewModel by viewModels()
-    val args: TaskDetailFragmentArgs by navArgs()
-    private var taskId: Int? = null
+    private val args: TaskDetailFragmentArgs by navArgs()
+    var currentTaskId: Int? = null
+    private var users = listOf<User>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -51,12 +49,19 @@ class TaskDetailFragment : BaseFragment() {
 
         setupToolbar(view)
         initTaskDetailsFields()
+        getAllUsers()
         showTaskMembers()
+    }
+
+    private fun getAllUsers() {
+        viewModel.allUsers.observe(viewLifecycleOwner, Observer {
+            users = it
+        })
     }
 
     private fun initTaskDetailsFields() {
         val task = args.task
-        taskId = task.taskId
+        currentTaskId = task.taskId
 
         binding.taskTitle.text = task.taskTitle
         binding.shortDescription.text = task.shortDescription
@@ -64,11 +69,12 @@ class TaskDetailFragment : BaseFragment() {
     }
 
     private fun showTaskMembers() {
-        viewModel.getTaskWithUsers(taskId!!).observe(viewLifecycleOwner, Observer {
+        viewModel.getTaskWithUsers(currentTaskId!!).observe(viewLifecycleOwner, Observer {
             it.forEach {
                 if (it.users.isEmpty()) {
                     binding.notAnyMemberJoined.visibility = View.VISIBLE
                 } else {
+                    binding.notAnyMemberJoined.visibility = View.INVISIBLE
                     recyclerAdapter.differ.submitList(it.users)
                     initRecyclerView()
                 }
@@ -104,23 +110,24 @@ class TaskDetailFragment : BaseFragment() {
 
     }
 
-    fun onAddMemberClickListener(view: View){
-        view.longSnackBar("clicked!")
+    fun onAddMemberClickListener(view: View) {
         AddMemberDialog(
-                requireContext(),
-                object : AddMemberToTaskDialogListener {
-                    override fun onAddButtonClicked(item: User) {
-//                        viewModel.insertUser(item)
-//                        Toast.makeText(
-//                            context,
-//                            "your product is added! ",
-//                            Toast.LENGTH_SHORT
-//                        )
-//                            .show()
-                    }
-                }).show()
+            users,
+            requireContext(),
+            object : AddMemberToTaskDialogListener {
+                override fun onAddButtonClicked(usersList: List<User>) {
+                    addTaskItToMembersAndUpdateUsers(usersList)
+                }
+            }).show()
+    }
 
-
+    private fun addTaskItToMembersAndUpdateUsers(usersList: List<User>) {
+        usersList.forEach { user ->
+            user.apply {
+                taskId = currentTaskId
+            }
+            viewModel.updateUser(user)
+        }
     }
 
 }

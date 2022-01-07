@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable-v24/bg_button_red_.xml" value="0.12314814814814815" />
         <entry key="app/src/main/res/drawable-v24/circle_bg_blue.xml" value="0.1" />
         <entry key="app/src/main/res/drawable-v24/hero_button.xml" value="0.1" />
         <entry key="app/src/main/res/drawable-v24/hero_solid_button.xml" value="0.1" />
@@ -15,6 +16,8 @@
         <entry key="app/src/main/res/drawable-v24/search_invoice_date_bg.xml" value="0.1" />
         <entry key="app/src/main/res/drawable-v24/shape_btn.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/bg_dialog.xml" value="0.1287037037037037" />
+        <entry key="app/src/main/res/drawable/bg_divider.xml" value="0.1259259259259259" />
+        <entry key="app/src/main/res/drawable/bg_user_selected_for_add_to_task.xml" value="0.1259259259259259" />
         <entry key="app/src/main/res/drawable/button_blue_bg.xml" value="0.12129629629629629" />
         <entry key="app/src/main/res/drawable/circle_button.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/circle_calendar_blue_bg.xml" value="0.12129629629629629" />
@@ -38,9 +41,11 @@
         <entry key="app/src/main/res/drawable/ic_next_chip.xml" value="0.10208333333333333" />
         <entry key="app/src/main/res/drawable/ic_search.xml" value="0.10740740740740741" />
         <entry key="app/src/main/res/drawable/ic_search_gray.xml" value="0.11388888888888889" />
+        <entry key="app/src/main/res/drawable/ic_selected_tick.xml" value="0.12314814814814815" />
         <entry key="app/src/main/res/drawable/ic_setting.xml" value="1.0" />
         <entry key="app/src/main/res/drawable/ic_settings.xml" value="0.10740740740740741" />
         <entry key="app/src/main/res/drawable/ic_splash.xml" value="1.0" />
+        <entry key="app/src/main/res/drawable/ic_user_1.xml" value="0.1171875" />
         <entry key="app/src/main/res/drawable/input_text_bg.xml" value="0.125" />
         <entry key="app/src/main/res/drawable/newest_task_back_bg.xml" value="0.12777777777777777" />
         <entry key="app/src/main/res/drawable/newest_task_bakground_bg.xml" value="0.13148148148148148" />
@@ -62,7 +67,7 @@
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.13333333333333333" />
         <entry key="app/src/main/res/layout/app_bar_layout.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/dialog_add_member.xml" value="0.11956521739130435" />
+        <entry key="app/src/main/res/layout/dialog_add_member.xml" value="0.25" />
         <entry key="app/src/main/res/layout/dialog_add_product_item.xml" value="0.11865942028985507" />
         <entry key="app/src/main/res/layout/fragment_chat.xml" value="0.11775362318840579" />
         <entry key="app/src/main/res/layout/fragment_create_task.xml" value="0.2" />
@@ -74,6 +79,7 @@
         <entry key="app/src/main/res/layout/fragment_show_all_tasks.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_signup.xml" value="0.11775362318840579" />
         <entry key="app/src/main/res/layout/fragment_task_detail.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/recycler_view_item_add_member_to_task.xml" value="0.25842696629213485" />
         <entry key="app/src/main/res/layout/recycler_view_item_show_all_tasks.xml" value="0.25" />
         <entry key="app/src/main/res/layout/recycler_view_item_show_all_tasks_minus_newest_task.xml" value="0.22" />
         <entry key="app/src/main/res/layout/recycler_view_item_show_member_task.xml" value="0.13043478260869565" />
