@@ -16,9 +16,11 @@ interface TaskManagementRepository {
     suspend fun insertUser(user: User)
 
     suspend fun updateSubTaskStatus(subTask: SubTask)
+    suspend fun updateUser(user: User)
 
 
     fun getAllTasks(): LiveData<List<Task>>
+    fun getAllUsers(): LiveData<List<User>>
     fun getNewestTask(): LiveData<Task>
     fun getAllTasksMinusNewestTask(): LiveData<List<Task>>
 

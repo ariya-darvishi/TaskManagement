@@ -22,10 +22,16 @@ interface TaskManagementDao {
     suspend fun insertUser(user: User)
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun updateUser(user: User)
+
+    @Update(onConflict = OnConflictStrategy.REPLACE)
     suspend fun updateSubTaskStatus(subTask: SubTask)
 
     @Query("SELECT * FROM Task")
     fun getAllTasks(): LiveData<List<Task>>
+
+    @Query("SELECT * FROM User")
+    fun getAllUsers(): LiveData<List<User>>
 
     @Query("SELECT * FROM Task ORDER BY taskId DESC LIMIT 1")
     fun getNewestTask(): LiveData<Task>

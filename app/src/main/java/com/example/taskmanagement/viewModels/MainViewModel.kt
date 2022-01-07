@@ -23,14 +23,8 @@ class MainViewModel @Inject constructor(
 
     var allTasksMinusNewestTask: LiveData<List<Task>> = repository.getAllTasksMinusNewestTask()
     var allTasks: LiveData<List<Task>> = repository.getAllTasks()
+    var allUsers: LiveData<List<User>> = repository.getAllUsers()
     var newestTask: LiveData<Task> = repository.getNewestTask()
-
-
-    private var _taskWithSubTasks: MutableLiveData<List<TaskWithSubTasks>> = MutableLiveData()
-    var taskWithSubTasks: LiveData<List<TaskWithSubTasks>> = _taskWithSubTasks
-
-    private var _taskWithUsers: MutableLiveData<List<TaskWithUsers>> = MutableLiveData()
-    var taskWithUsers: LiveData<List<TaskWithUsers>> = _taskWithUsers
 
 
     fun insertTask(task: Task) = viewModelScope.launch(Dispatchers.IO) {
@@ -45,15 +39,20 @@ class MainViewModel @Inject constructor(
         repository.insertUser(user)
     }
 
+    fun updateUser(user: User) = viewModelScope.launch(Dispatchers.IO) {
+        repository.updateUser(user)
+    }
+
     fun updateSubTaskStatus(subTask: SubTask) = viewModelScope.launch(Dispatchers.IO) {
         repository.updateSubTaskStatus(subTask)
     }
 
-    fun getTaskWithSubTasks(taskId: Int) =
+    fun getTaskWithSubTasks(taskId: Int) = viewModelScope.launch(Dispatchers.IO) {
         repository.getTaskWithSubTasks(taskId)
+    }
 
-    fun getTaskWithUsers(taskId: Int) =
-        repository.getTaskWithUsers(taskId)
+    fun getTaskWithUsers(taskId: Int):LiveData<List<TaskWithUsers>> =
+          repository.getTaskWithUsers(taskId)
 
 }
 
