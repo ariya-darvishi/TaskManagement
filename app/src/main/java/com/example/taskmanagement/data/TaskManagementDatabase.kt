@@ -12,7 +12,7 @@ import com.example.taskmanagement.data.entities.User
         SubTask::class,
         User::class
     ],
-    version = 3
+    version = 4
 )
 abstract class TaskManagementDatabase : RoomDatabase() {
 

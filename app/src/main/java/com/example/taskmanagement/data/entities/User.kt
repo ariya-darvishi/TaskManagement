@@ -12,6 +12,6 @@ data class User(
     val userPassword: String,
     val userImg: Int,
 
-    val taskId: Int?
+    var taskId: Int?
 
 )
