@@ -110,7 +110,7 @@ class TaskDetailFragment : BaseFragment() {
 
     }
 
-    fun onAddMemberClickListener(view: View) {
+    fun onAddMemberClickListener() {
         AddMemberDialog(
             users,
             requireContext(),

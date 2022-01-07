@@ -280,7 +280,7 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:clickable="true"
-                    android:onClick="@{(view)-> fragmentTaskDetail.onAddMemberClickListener(view)}"
+                    android:onClick="@{()-> fragmentTaskDetail.onAddMemberClickListener()}"
                     app:layout_constraintBottom_toBottomOf="@+id/task_members_recycler_view"
                     app:layout_constraintEnd_toEndOf="@+id/task_members_recycler_view"
                     app:layout_constraintHorizontal_bias="0.0"
