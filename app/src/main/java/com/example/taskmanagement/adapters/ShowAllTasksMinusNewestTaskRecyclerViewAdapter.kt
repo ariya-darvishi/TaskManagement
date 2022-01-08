@@ -11,12 +11,11 @@ import com.example.taskmanagement.R
 import com.example.taskmanagement.data.entities.Task
 import android.annotation.SuppressLint
 import android.view.View
-import androidx.lifecycle.ViewModel
 import com.example.taskmanagement.databinding.RecyclerViewItemShowAllTasksMinusNewestTaskBinding
 import com.timqi.sectorprogressview.ColorfulRingProgressView
 
 
-class ShowAllTasksMinusNewestTaskRecyclerViewAdapter(var viewModel: ViewModel) :
+class ShowAllTasksMinusNewestTaskRecyclerViewAdapter() :
     RecyclerView.Adapter<ShowAllTasksMinusNewestTaskRecyclerViewAdapter.ShowTasksViewHolder>() {
 
     class ShowTasksViewHolder(binding: RecyclerViewItemShowAllTasksMinusNewestTaskBinding) :
