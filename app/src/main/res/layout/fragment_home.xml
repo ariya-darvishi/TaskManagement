@@ -89,7 +89,7 @@
             android:layout_width="0dp"
             android:layout_height="180dp"
             android:layout_marginTop="16dp"
-            android:visibility="gone"
+            android:visibility="visible"
             app:layout_constraintEnd_toStartOf="@+id/right_guideline"
             app:layout_constraintStart_toStartOf="@+id/left_guideline"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
@@ -218,21 +218,24 @@
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/newest_task_users_recycler_view"
                             android:layout_width="0dp"
-                            android:layout_height="0dp"
+                            android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
                             android:layout_marginTop="10dp"
                             android:layout_marginEnd="8dp"
                             android:layout_marginBottom="24dp"
                             android:paddingBottom="8dp"
+                            app:layout_constrainedHeight="true"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.0" />
 
                         <ImageView
                             android:id="@+id/newest_task_add_user_to_recycler_view"
                             android:layout_width="30dp"
                             android:layout_height="30dp"
+                            android:onClick="@{()-> fragmentHome.onAddMemberClickListener()}"
                             app:layout_constraintBottom_toBottomOf="@+id/newest_task_user_list_barrier"
                             app:layout_constraintEnd_toEndOf="@+id/newest_task_users_recycler_view"
                             app:layout_constraintStart_toStartOf="@+id/newest_task_users_recycler_view"
