@@ -13,7 +13,8 @@
     <color name="blue_color">#246BFD</color>
     <color name="green_color">#24FD41</color>
     <color name="white_color">#FFFFFF</color>
-    <color name="gray_color">#666666</color>
+    <color name="dark_gray_color">#666666</color>
+<!--    <color name="dark_gray_color">#D4D4D4</color>-->
     <color name="light_gray_color">#E9E9E9</color>
     <color name="orange_color">#FDB624</color>
 

@@ -44,7 +44,7 @@
             app:backgroundColor="@color/white_color"
             app:textColor="@color/white_color"
             app:indicatorColor="@color/blue_color"
-            app:iconTint="@color/gray_color"
+            app:iconTint="@color/dark_gray_color"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

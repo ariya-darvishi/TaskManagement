@@ -72,6 +72,7 @@
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.13333333333333333" />
         <entry key="app/src/main/res/layout/app_bar_layout.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/dd.xml" value="0.19583333333333333" />
         <entry key="app/src/main/res/layout/dialog_add_member.xml" value="0.25" />
         <entry key="app/src/main/res/layout/dialog_add_product_item.xml" value="0.11865942028985507" />
         <entry key="app/src/main/res/layout/fragment_chat.xml" value="0.11775362318840579" />
@@ -83,7 +84,7 @@
         <entry key="app/src/main/res/layout/fragment_setting.xml" value="0.11775362318840579" />
         <entry key="app/src/main/res/layout/fragment_show_all_tasks.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_signup.xml" value="0.11775362318840579" />
-        <entry key="app/src/main/res/layout/fragment_task_detail.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/fragment_task_detail.xml" value="0.4" />
         <entry key="app/src/main/res/layout/recycler_view_item_add_member_to_task.xml" value="0.25842696629213485" />
         <entry key="app/src/main/res/layout/recycler_view_item_show_all_tasks.xml" value="0.25" />
         <entry key="app/src/main/res/layout/recycler_view_item_show_all_tasks_minus_newest_task.xml" value="0.22" />
