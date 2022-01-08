@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
@@ -12,6 +13,8 @@ import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager.HORIZONTAL
+import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
 import com.example.taskmanagement.R
 import com.example.taskmanagement.adapters.SubTaskRecyclerViewAdapter
 import com.example.taskmanagement.adapters.TaskMembersRecyclerViewAdapter
@@ -46,7 +49,7 @@ class TaskDetailFragment : BaseFragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_task_detail, container, false)
 
         binding.fragmentTaskDetail = this
-
+        getAllUsers()
         return binding.root
     }
 
@@ -56,10 +59,27 @@ class TaskDetailFragment : BaseFragment() {
 
         setupToolbar(view)
         initTaskDetailsFields()
-        getAllUsers()
-        showTaskMembers()
-        showSubTasks()
         setOnSubTaskItemClickListener()
+    }
+
+    var totalSubTask :Int ?= null
+    var totalPendingSubtask :Int ?= null
+
+
+
+    private fun getWorkProgress(){
+        viewModel.getTaskWithSubTasks(currentTaskId!!).observe(viewLifecycleOwner, Observer {
+            it.forEach {
+                totalSubTask = it.subTasks.count ()
+                totalPendingSubtask = it.subTasks.count {
+                    it.isCompleted
+                }
+
+                Toast.makeText(requireContext(), "total= $totalSubTask,  totalComplete= $totalPendingSubtask", Toast.LENGTH_LONG).show()
+
+
+            }
+        })
     }
 
     private fun showSubTasks() {
@@ -79,20 +99,25 @@ class TaskDetailFragment : BaseFragment() {
     }
 
     private fun initMembersRecyclerView() {
-        binding.taskMembersRecyclerView.setupRecyclerView(
-            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false),
-            taskMembersRecyclerAdapter,
-            RecyclerViewMarginItemDecoration(0, 0, 0, -30)
-        )
+//        binding.taskMembersRecyclerView.setupRecyclerView(
+//            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false),
+//            taskMembersRecyclerAdapter,
+//            RecyclerViewMarginItemDecoration(0, 0, 0, 0)
+//        )
+        binding.taskMembersRecyclerView.apply {
+            adapter = taskMembersRecyclerAdapter
+            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            addItemDecoration ( RecyclerViewMarginItemDecoration(1, 1, 1, -30))
+        }
     }
 
     private fun initSubTaskRecyclerView() {
-
         binding.subTaskRecyclerView.setupRecyclerView(
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false),
             subTaskRecyclerAdapter,
             RecyclerViewMarginItemDecoration(0, 0, 0, 1)
         )
+        getWorkProgress()
     }
 
     private fun getAllUsers() {
@@ -108,6 +133,9 @@ class TaskDetailFragment : BaseFragment() {
         binding.taskTitle.text = task.taskTitle
         binding.shortDescription.text = task.shortDescription
         binding.taskDescription.text = task.longDescription
+
+        showTaskMembers()
+        showSubTasks()
     }
 
     private fun showTaskMembers() {
@@ -116,10 +144,9 @@ class TaskDetailFragment : BaseFragment() {
                 if (it.users.isEmpty()) {
                     binding.notAnyMemberJoined.visibility = View.VISIBLE
                 } else {
-                    binding.taskMembersRecyclerView.visibility = View.VISIBLE
                     binding.notAnyMemberJoined.visibility = View.INVISIBLE
+                    binding.taskMembersRecyclerView.visibility = View.VISIBLE
                     taskMembersRecyclerAdapter.differ.submitList(it.users)
-
                     initMembersRecyclerView()
                 }
             }
@@ -156,25 +183,25 @@ class TaskDetailFragment : BaseFragment() {
             }).show()
     }
 
-    private fun addTaskItToMembersAndUpdateUsers(usersList: List<User>) {
-        usersList.forEach { user ->
-            user.apply {
+    private fun addTaskItToMembersAndUpdateUsers(membersList: List<User>) {
+        membersList.forEach {
+            it.apply {
                 taskId = currentTaskId
             }
-            viewModel.updateUser(user)
+            viewModel.updateUser(it)
         }
+
     }
 
     fun createNewSubTaskBtnClickListener(view: View) {
         binding.apply {
             if (this.insertNewSubTaskEditText.text.isNullOrBlank()) {
                 changeBackgroundLayoutToDangerousLayout(this.insertNewSubTaskEditText)
-                view.shortSnackBar("Pleas Enter SUb Task Title...")
+                view.shortSnackBar("Pleas Enter Sub Task Title...")
             } else {
                 clearDangerBackground(this.insertNewSubTaskEditText)
                 insertTaskToDatabase(view)
-
-                binding.insertNewSubTaskEditText.text?.clear()
+                getWorkProgress()
             }
         }
     }
@@ -205,6 +232,8 @@ class TaskDetailFragment : BaseFragment() {
         )
 
         viewModel.insertSubTask(subTask)
+
+        binding.insertNewSubTaskEditText.text?.clear()
     }
 
     private fun setOnSubTaskItemClickListener() {
