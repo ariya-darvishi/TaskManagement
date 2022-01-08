@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.taskmanagement.R
 import com.example.taskmanagement.data.entities.Task
-import com.example.taskmanagement.databinding.RecyclerViewItemShowAllTasksBinding
 import android.annotation.SuppressLint
 import android.view.View
 import androidx.lifecycle.ViewModel
@@ -20,7 +19,8 @@ import com.timqi.sectorprogressview.ColorfulRingProgressView
 class ShowAllTasksMinusNewestTaskRecyclerViewAdapter(var viewModel: ViewModel) :
     RecyclerView.Adapter<ShowAllTasksMinusNewestTaskRecyclerViewAdapter.ShowTasksViewHolder>() {
 
-     class ShowTasksViewHolder(binding : RecyclerViewItemShowAllTasksMinusNewestTaskBinding) : RecyclerView.ViewHolder(binding.root)
+    class ShowTasksViewHolder(binding: RecyclerViewItemShowAllTasksMinusNewestTaskBinding) :
+        RecyclerView.ViewHolder(binding.root)
 
     private val diffCallback = object : DiffUtil.ItemCallback<Task>() {
         override fun areItemsTheSame(
@@ -53,14 +53,15 @@ class ShowAllTasksMinusNewestTaskRecyclerViewAdapter(var viewModel: ViewModel) :
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): ShowAllTasksMinusNewestTaskRecyclerViewAdapter.ShowTasksViewHolder {
-        val recyclerViewItemShowAllTasks : RecyclerViewItemShowAllTasksMinusNewestTaskBinding =
-            DataBindingUtil.inflate(LayoutInflater.from(parent.context),
+    ): ShowTasksViewHolder {
+        val recyclerViewItemShowAllTasks: RecyclerViewItemShowAllTasksMinusNewestTaskBinding =
+            DataBindingUtil.inflate(
+                LayoutInflater.from(parent.context),
                 R.layout.recycler_view_item_show_all_tasks_minus_newest_task,
                 parent,
                 false
             )
-        return ShowTasksViewHolder(recyclerViewItemShowAllTasks )
+        return ShowTasksViewHolder(recyclerViewItemShowAllTasks)
     }
 
     override fun getItemCount(): Int {
@@ -69,7 +70,7 @@ class ShowAllTasksMinusNewestTaskRecyclerViewAdapter(var viewModel: ViewModel) :
 
     @SuppressLint("SetTextI18n", "CutPasteId")
     override fun onBindViewHolder(
-        holder: ShowAllTasksMinusNewestTaskRecyclerViewAdapter.ShowTasksViewHolder,
+        holder: ShowTasksViewHolder,
         position: Int
     ) {
 
@@ -81,15 +82,18 @@ class ShowAllTasksMinusNewestTaskRecyclerViewAdapter(var viewModel: ViewModel) :
             holder.itemView.findViewById<TextView>(R.id.short_description).text =
                 taskItem.shortDescription
 
-            /////////////
-            holder.itemView.findViewById<TextView>(R.id.work_progression).visibility = View.VISIBLE
-            holder.itemView.findViewById<ColorfulRingProgressView>(R.id.work_progression_in_home_fragment).visibility = View.VISIBLE
+            if (taskItem.task_progression != 0f) {
+                holder.itemView.findViewById<ColorfulRingProgressView>(R.id.work_progression_in_home_fragment)
+                    .apply {
+                        visibility = View.VISIBLE
+                        percent = taskItem.task_progression
+                    }
+                holder.itemView.findViewById<TextView>(R.id.work_progression).apply {
+                    visibility = View.VISIBLE
+                    text = "${taskItem.task_progression}%"
+                }
+            }
 
-            holder.itemView.findViewById<TextView>(R.id.work_progression).text =
-                "${taskItem.task_progression}%"
-            holder.itemView.findViewById<ColorfulRingProgressView>(R.id.work_progression_in_home_fragment).percent =
-                taskItem.task_progression
-///////////////////
             setOnClickListener {
                 onItemClickListener?.let {
                     it(taskItem)
