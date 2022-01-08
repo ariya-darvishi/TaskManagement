@@ -361,7 +361,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="60dp"
                     android:background="@drawable/button_blue_bg"
-                    android:onClick="@{(view)-> fragmentTaskDetail.createNewSubTaskBtnClickListener(view)}"
+                    android:onClick="@{(view)-> fragmentTaskDetail.onAddSubTaskBtnClickListener(view)}"
                     android:text="Add new task"
                     android:textAllCaps="false"
                     android:textColor="@color/white_color"

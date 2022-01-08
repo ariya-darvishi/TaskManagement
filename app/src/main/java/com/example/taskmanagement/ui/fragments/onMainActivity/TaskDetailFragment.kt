@@ -1,10 +1,12 @@
 package com.example.taskmanagement.ui.fragments.onMainActivity
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
@@ -199,20 +201,28 @@ class TaskDetailFragment : BaseFragment() {
 
     }
 
-    fun createNewSubTaskBtnClickListener(view: View) {
+    fun onAddSubTaskBtnClickListener(view: View) {
+        hideAndroidKeyBoard()
         binding.apply {
             if (this.insertNewSubTaskEditText.text.isNullOrBlank()) {
                 changeBackgroundLayoutToDangerousLayout(this.insertNewSubTaskEditText)
                 view.shortSnackBar("Pleas Enter Sub Task Title...")
             } else {
                 clearDangerBackground(this.insertNewSubTaskEditText)
-                insertTaskToDatabase()
+                insertSubTaskToDatabase()
                 initWorkProgression()
             }
         }
     }
 
-    private fun insertTaskToDatabase() {
+
+    private fun hideAndroidKeyBoard(){
+        val androidKeaBoard =
+            requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        androidKeaBoard.hideSoftInputFromWindow(requireView().windowToken, 0)
+    }
+
+    private fun insertSubTaskToDatabase() {
 
         val inputSubTask = binding.insertNewSubTaskEditText.text.toString()
 
