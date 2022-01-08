@@ -1,16 +1,23 @@
 package com.example.taskmanagement.ui.fragments.onMainActivity
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import android.widget.ImageButton
+import android.widget.TextView
+import androidx.activity.OnBackPressedCallback
+import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,16 +27,19 @@ import com.example.taskmanagement.adapters.TaskMembersRecyclerViewAdapter
 import com.example.taskmanagement.data.entities.SubTask
 import com.example.taskmanagement.data.entities.User
 import com.example.taskmanagement.databinding.FragmentTaskDetailBinding
+import com.example.taskmanagement.ui.activities.MainActivity
 import com.example.taskmanagement.utils.RecyclerViewMarginItemDecoration
+import com.example.taskmanagement.utils.calculateWorkProgression
 import com.example.taskmanagement.utils.setupRecyclerView
 import com.example.taskmanagement.utils.shortSnackBar
 import com.example.taskmanagement.viewModels.MainViewModel
 import com.google.android.material.textfield.TextInputEditText
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.MutableSharedFlow
 
 
 @AndroidEntryPoint
-class TaskDetailFragment : BaseFragment() {
+class TaskDetailFragment : Fragment() {
 
     private val taskMembersRecyclerAdapter = TaskMembersRecyclerViewAdapter()
     private val subTaskRecyclerAdapter = SubTaskRecyclerViewAdapter()
@@ -37,8 +47,20 @@ class TaskDetailFragment : BaseFragment() {
     private val viewModel: MainViewModel by viewModels()
     private val args: TaskDetailFragmentArgs by navArgs()
     var currentTaskId: Int? = null
+    private var percent = 0f
     private var users = listOf<User>()
 
+    lateinit var navController: NavController
+    lateinit var toolbar: Toolbar
+    lateinit var toolbarTitle: TextView
+    lateinit var toolbarBackBtn: ImageButton
+
+    lateinit var mainActivity: MainActivity
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        mainActivity = context as MainActivity
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -55,15 +77,34 @@ class TaskDetailFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupToolbar()
+        setupToolbar(view)
 
         initTaskDetailsFields()
         setOnSubTaskItemClickListener()
+
+        setupOnBackPressed()
+    }
+
+    private fun setupOnBackPressed() {
+        requireActivity().onBackPressedDispatcher.addCallback(object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                updateTask()
+                this.remove()
+                mainActivity.onBackPressed()
+            }
+
+        })
     }
 
 
     @SuppressLint("SetTextI18n", "CutPasteId")
-    private fun setupToolbar() {
+    private fun setupToolbar(view: View) {
+
+        navController = Navigation.findNavController(view)
+
+        toolbar = view.findViewById(R.id.toolbar)
+        toolbarTitle = toolbar.findViewById(R.id.toolbar_title)
+        toolbarBackBtn = toolbar.findViewById(R.id.toolbar_back_btn)
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
 
@@ -72,6 +113,7 @@ class TaskDetailFragment : BaseFragment() {
                 toolbarTitle.text = "Task Details"
 
                 toolbarBackBtn.setOnClickListener {
+                    updateTask()
                     Navigation.findNavController(it).popBackStack()
                 }
             }
@@ -168,16 +210,22 @@ class TaskDetailFragment : BaseFragment() {
             }
         })
     }
+
     @SuppressLint("SetTextI18n")
     private fun showWorkProgression(totalCompleteSubtask: Float, totalSubTask: Float) {
         binding.workProgression.visibility = View.VISIBLE
         binding.workProgressionCircleProgress.visibility = View.VISIBLE
 
-        val percent = totalCompleteSubtask.div(totalSubTask).times(100)
-        val percentWith2digits: Float = String.format("%.2f", percent).toFloat()
-        binding.workProgression.text = "$percentWith2digits%"
-        binding.workProgressionCircleProgress.percent = percentWith2digits
 
+        percent = calculateWorkProgression(totalCompleteSubtask, totalSubTask)
+        binding.workProgression.text = "$percent%"
+        binding.workProgressionCircleProgress.percent = percent
+//        updateTask(percent, currentTaskId!!)
+
+    }
+
+    private fun updateTask() {
+        viewModel.updateTask(percent, currentTaskId!!)
     }
 
     fun onAddMemberClickListener() {
@@ -216,7 +264,7 @@ class TaskDetailFragment : BaseFragment() {
     }
 
 
-    private fun hideAndroidKeyBoard(){
+    private fun hideAndroidKeyBoard() {
         val androidKeaBoard =
             requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         androidKeaBoard.hideSoftInputFromWindow(requireView().windowToken, 0)
@@ -269,4 +317,5 @@ class TaskDetailFragment : BaseFragment() {
             }
         }
     }
+
 }

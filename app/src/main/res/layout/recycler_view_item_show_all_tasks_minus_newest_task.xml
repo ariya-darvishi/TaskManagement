@@ -89,15 +89,35 @@
             app:layout_constraintStart_toEndOf="@+id/nested_user_recycler_view_barrier"
             app:layout_constraintTop_toTopOf="@+id/nested_users_recycler_view" />
 
-        <ProgressBar
-            android:id="@+id/progress_work_progress_bar"
+        <com.timqi.sectorprogressview.ColorfulRingProgressView
+            android:id="@+id/work_progression_in_home_fragment"
             style="?android:attr/progressBarStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:visibility="gone"
+            app:bgColor="@color/gray_color"
+            app:fgColorEnd="@color/blue_color"
+            app:fgColorStart="@color/blue_color"
+            app:percent="17"
+            app:startAngle="0"
+            app:strokeWidth="6dp"
             app:layout_constraintBottom_toTopOf="@+id/guideline4"
             app:layout_constraintEnd_toStartOf="@+id/right_guideline"
             app:layout_constraintStart_toStartOf="@+id/guideline2"
             app:layout_constraintTop_toTopOf="@+id/guideline3" />
+        <TextView
+            android:id="@+id/work_progression"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="100%"
+            android:textColor="@color/blue_color"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/work_progression_in_home_fragment"
+            app:layout_constraintEnd_toEndOf="@+id/work_progression_in_home_fragment"
+            app:layout_constraintStart_toStartOf="@+id/work_progression_in_home_fragment"
+            app:layout_constraintTop_toTopOf="@+id/work_progression_in_home_fragment" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline3"

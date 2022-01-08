@@ -24,6 +24,9 @@ interface TaskManagementDao {
     @Update(onConflict = OnConflictStrategy.REPLACE)
     suspend fun updateUser(user: User)
 
+    @Query("UPDATE Task SET task_progression =:task_progression  WHERE taskId =:taskId")
+    suspend fun updateTask(task_progression: Float, taskId: Int)
+
     @Update(onConflict = OnConflictStrategy.REPLACE)
     suspend fun updateSubTaskStatus(subTask: SubTask)
 

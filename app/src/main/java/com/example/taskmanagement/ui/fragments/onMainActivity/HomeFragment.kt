@@ -27,7 +27,7 @@ class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
     private val viewModel: MainViewModel by viewModels()
-    private val recyclerAdapter = ShowAllTasksMinusNewestTaskRecyclerViewAdapter()
+    private lateinit var recyclerAdapter: ShowAllTasksMinusNewestTaskRecyclerViewAdapter
     private var newestTask : Task?= null
 
     override fun onCreateView(
@@ -42,6 +42,8 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        recyclerAdapter = ShowAllTasksMinusNewestTaskRecyclerViewAdapter(viewModel)
+
         showNewestTask()
         showAllTasksMinusNewestTask()
         setOnItemClickListenerForRecyclerView()

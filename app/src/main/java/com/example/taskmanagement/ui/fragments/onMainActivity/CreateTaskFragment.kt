@@ -5,9 +5,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
+import android.widget.TextView
+import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.example.taskmanagement.R
 import com.example.taskmanagement.data.entities.Task
@@ -18,10 +23,15 @@ import com.google.android.material.textfield.TextInputEditText
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class CreateTaskFragment : BaseFragment() {
+class CreateTaskFragment : Fragment() {
 
     private lateinit var binding: FragmentCreateTaskBinding
     private val viewModel: MainViewModel by viewModels()
+
+    lateinit var navController: NavController
+    lateinit var toolbar: Toolbar
+    lateinit var toolbarTitle: TextView
+    lateinit var toolbarBackBtn: ImageButton
 
 
     override fun onCreateView(
@@ -40,12 +50,17 @@ class CreateTaskFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupToolbar()
+        setupToolbar(view)
     }
 
     @SuppressLint("SetTextI18n", "CutPasteId")
-    private fun setupToolbar() {
+    private fun setupToolbar(view: View) {
 
+        navController = Navigation.findNavController(view)
+
+        toolbar = view.findViewById(R.id.toolbar)
+        toolbarTitle = toolbar.findViewById(R.id.toolbar_title)
+        toolbarBackBtn = toolbar.findViewById(R.id.toolbar_back_btn)
         navController.addOnDestinationChangedListener { _, destination, _ ->
 
             if (destination.id == R.id.createTaskFragment) {

@@ -11,10 +11,13 @@ import com.example.taskmanagement.R
 import com.example.taskmanagement.data.entities.Task
 import com.example.taskmanagement.databinding.RecyclerViewItemShowAllTasksBinding
 import android.annotation.SuppressLint
+import android.view.View
+import androidx.lifecycle.ViewModel
 import com.example.taskmanagement.databinding.RecyclerViewItemShowAllTasksMinusNewestTaskBinding
+import com.timqi.sectorprogressview.ColorfulRingProgressView
 
 
-class ShowAllTasksMinusNewestTaskRecyclerViewAdapter :
+class ShowAllTasksMinusNewestTaskRecyclerViewAdapter(var viewModel: ViewModel) :
     RecyclerView.Adapter<ShowAllTasksMinusNewestTaskRecyclerViewAdapter.ShowTasksViewHolder>() {
 
      class ShowTasksViewHolder(binding : RecyclerViewItemShowAllTasksMinusNewestTaskBinding) : RecyclerView.ViewHolder(binding.root)
@@ -61,10 +64,10 @@ class ShowAllTasksMinusNewestTaskRecyclerViewAdapter :
     }
 
     override fun getItemCount(): Int {
-//        return dataList.size
         return dataList.size
     }
 
+    @SuppressLint("SetTextI18n", "CutPasteId")
     override fun onBindViewHolder(
         holder: ShowAllTasksMinusNewestTaskRecyclerViewAdapter.ShowTasksViewHolder,
         position: Int
@@ -72,11 +75,21 @@ class ShowAllTasksMinusNewestTaskRecyclerViewAdapter :
 
         val taskItem = dataList[position]
         holder.itemView.apply {
+
             holder.itemView.findViewById<TextView>(R.id.task_title).text =
                 taskItem.taskTitle
             holder.itemView.findViewById<TextView>(R.id.short_description).text =
                 taskItem.shortDescription
 
+            /////////////
+            holder.itemView.findViewById<TextView>(R.id.work_progression).visibility = View.VISIBLE
+            holder.itemView.findViewById<ColorfulRingProgressView>(R.id.work_progression_in_home_fragment).visibility = View.VISIBLE
+
+            holder.itemView.findViewById<TextView>(R.id.work_progression).text =
+                "${taskItem.task_progression}%"
+            holder.itemView.findViewById<ColorfulRingProgressView>(R.id.work_progression_in_home_fragment).percent =
+                taskItem.task_progression
+///////////////////
             setOnClickListener {
                 onItemClickListener?.let {
                     it(taskItem)

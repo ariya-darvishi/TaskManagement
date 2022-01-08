@@ -43,16 +43,20 @@ class MainViewModel @Inject constructor(
         repository.updateUser(user)
     }
 
+    fun updateTask(task_progression: Float, taskId: Int) = viewModelScope.launch(Dispatchers.IO) {
+        repository.updateTask(task_progression, taskId)
+    }
+
     fun updateSubTaskStatus(subTask: SubTask) = viewModelScope.launch(Dispatchers.IO) {
         repository.updateSubTaskStatus(subTask)
     }
 
-    fun getTaskWithSubTasks(taskId: Int) :LiveData<List<TaskWithSubTasks>> =
+    fun getTaskWithSubTasks(taskId: Int): LiveData<List<TaskWithSubTasks>> =
         repository.getTaskWithSubTasks(taskId)
 
 
-    fun getTaskWithUsers(taskId: Int):LiveData<List<TaskWithUsers>> =
-          repository.getTaskWithUsers(taskId)
+    fun getTaskWithUsers(taskId: Int): LiveData<List<TaskWithUsers>> =
+        repository.getTaskWithUsers(taskId)
 
 }
 

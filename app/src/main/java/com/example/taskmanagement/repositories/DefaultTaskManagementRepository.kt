@@ -32,6 +32,10 @@ class DefaultTaskManagementRepository(
         dao.updateUser(user)
     }
 
+    override suspend fun updateTask(task_progression: Float, taskId: Int) {
+        dao.updateTask(task_progression, taskId)
+    }
+
     override fun getAllTasks(): LiveData<List<Task>> = dao.getAllTasks()
     override fun getAllUsers(): LiveData<List<User>> = dao.getAllUsers()
 

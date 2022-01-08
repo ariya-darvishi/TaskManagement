@@ -17,6 +17,7 @@ interface TaskManagementRepository {
 
     suspend fun updateSubTaskStatus(subTask: SubTask)
     suspend fun updateUser(user: User)
+    suspend fun updateTask(task_progression: Float, taskId: Int)
 
 
     fun getAllTasks(): LiveData<List<Task>>
