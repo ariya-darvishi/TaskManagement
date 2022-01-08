@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
@@ -13,8 +12,6 @@ import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager.HORIZONTAL
-import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
 import com.example.taskmanagement.R
 import com.example.taskmanagement.adapters.SubTaskRecyclerViewAdapter
 import com.example.taskmanagement.adapters.TaskMembersRecyclerViewAdapter
@@ -33,7 +30,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class TaskDetailFragment : BaseFragment() {
 
     private val taskMembersRecyclerAdapter = TaskMembersRecyclerViewAdapter()
-    private val subTaskRecyclerAdapter =  SubTaskRecyclerViewAdapter()
+    private val subTaskRecyclerAdapter = SubTaskRecyclerViewAdapter()
     private lateinit var binding: FragmentTaskDetailBinding
     private val viewModel: MainViewModel by viewModels()
     private val args: TaskDetailFragmentArgs by navArgs()
@@ -62,24 +59,31 @@ class TaskDetailFragment : BaseFragment() {
         setOnSubTaskItemClickListener()
     }
 
-    var totalSubTask :Int ?= null
-    var totalPendingSubtask :Int ?= null
-
-
-
-    private fun getWorkProgress(){
+    @SuppressLint("SetTextI18n")
+    private fun getWorkProgress() {
         viewModel.getTaskWithSubTasks(currentTaskId!!).observe(viewLifecycleOwner, Observer {
-            it.forEach {
-                totalSubTask = it.subTasks.count ()
-                totalPendingSubtask = it.subTasks.count {
-                    it.isCompleted
+            if (it.isNotEmpty()) {
+                it.forEach {
+                    val totalSubTask = it.subTasks.count().toFloat()
+                    val totalCompleteSubtask = it.subTasks.count {
+                        it.isCompleted
+                    }.toFloat()
+                    showWorkProgression(totalCompleteSubtask, totalSubTask)
                 }
-
-                Toast.makeText(requireContext(), "total= $totalSubTask,  totalComplete= $totalPendingSubtask", Toast.LENGTH_LONG).show()
-
-
             }
         })
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun showWorkProgression(totalCompleteSubtask: Float, totalSubTask: Float) {
+        binding.workProgression.visibility = View.VISIBLE
+        binding.workProgressionCircleProgress.visibility = View.VISIBLE
+
+        val percent = totalCompleteSubtask.div(totalSubTask).times(100)
+        val percentWith2digits: Float = String.format("%.2f", percent).toFloat()
+        binding.workProgression.text = "$percentWith2digits%"
+        binding.workProgressionCircleProgress.percent = percentWith2digits
+
     }
 
     private fun showSubTasks() {
@@ -106,8 +110,9 @@ class TaskDetailFragment : BaseFragment() {
 //        )
         binding.taskMembersRecyclerView.apply {
             adapter = taskMembersRecyclerAdapter
-            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-            addItemDecoration ( RecyclerViewMarginItemDecoration(1, 1, 1, -30))
+            layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            addItemDecoration(RecyclerViewMarginItemDecoration(1, 1, 1, -30))
         }
     }
 
@@ -239,13 +244,13 @@ class TaskDetailFragment : BaseFragment() {
     private fun setOnSubTaskItemClickListener() {
         subTaskRecyclerAdapter.setOnItemClickListener {
 
-            when(it.isCompleted){
-                false ->{
+            when (it.isCompleted) {
+                false -> {
                     viewModel.updateSubTaskStatus(it.apply {
                         this.isCompleted = true
                     })
                 }
-                true ->{
+                true -> {
                     viewModel.updateSubTaskStatus(it.apply {
                         this.isCompleted = false
                     })
