@@ -14,7 +14,9 @@ data class Task(
     val shortDescription: String,
     val longDescription: String,
     val taskImg: String?,
-    var task_progression:Float = 0f
+    var task_progression: Float = 0f,
+
+    val userList: List<User>
 
 ):Parcelable {
     constructor(parcel: Parcel) : this(
@@ -23,9 +25,9 @@ data class Task(
         parcel.readString().toString(),
         parcel.readString().toString(),
         parcel.readString(),
-        parcel.readFloat()
-    ) {
-    }
+        parcel.readFloat(),
+        TODO("userList")
+    )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeInt(taskId)
