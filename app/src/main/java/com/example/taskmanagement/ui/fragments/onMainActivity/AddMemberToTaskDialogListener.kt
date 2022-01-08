@@ -5,5 +5,5 @@ import com.example.taskmanagement.data.entities.User
 
 interface AddMemberToTaskDialogListener {
 
-    fun onAddButtonClicked(usersList: List<User>)
+    fun onAddButtonClicked(membersList: List<User>)
 }

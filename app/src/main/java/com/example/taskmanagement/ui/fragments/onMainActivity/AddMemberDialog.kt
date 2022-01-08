@@ -20,7 +20,10 @@ class AddMemberDialog(
     AppCompatDialog(context) {
 
     private val recyclerAdapter = AddMemberToTaskRecyclerViewAdapter()
-    private val membersList = mutableSetOf<User>()
+//    private var membersList:List<User> = mutableListOf()
+    private var membersList:MutableList<User> = mutableListOf()
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)

@@ -48,6 +48,7 @@ class AddMemberToTaskRecyclerViewAdapter :
     @SuppressLint("NotifyDataSetChanged")
     fun updateData(newData: List<User>) {
         dataList = newData
+        differ.submitList(newData)
         notifyDataSetChanged()
     }
 

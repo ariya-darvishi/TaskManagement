@@ -31,7 +31,7 @@ class MainViewModel @Inject constructor(
         repository.insertTask(task)
     }
 
-    fun insertSubTask(subTask: SubTask) = viewModelScope.launch(Dispatchers.IO) {
+    fun insertSubTask(subTask: SubTask) = viewModelScope.launch() {
         repository.insertSubTask(subTask)
     }
 

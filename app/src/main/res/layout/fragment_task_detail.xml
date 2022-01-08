@@ -258,42 +258,36 @@
                     android:textColor="@color/black_color"
                     android:textSize="15sp"
                     app:layout_constraintStart_toStartOf="@+id/left_guideline"
-                    app:layout_constraintTop_toBottomOf="@+id/task_members_recycler_view_main_layout" />
+                    app:layout_constraintTop_toBottomOf="@+id/task_members_recycler_view" />
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/task_members_recycler_view_main_layout"
-                    android:layout_width="0dp"
-                    android:layout_height="50dp"
-                    android:paddingRight="2dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginRight="40dp"
-                    android:foregroundGravity="left"
-                    app:layout_constraintEnd_toStartOf="@+id/work_progress_progress_bar"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="@+id/left_guideline"
-                    app:layout_constraintTop_toBottomOf="@+id/team_member_text_view">
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/task_members_recycler_view"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:visibility="gone"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        app:layout_constraintWidth_default="wrap"
+                        android:visibility="invisible"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="40dp"
+                        android:numColumns="auto_fit"
+                        android:stretchMode="columnWidth"
+                        android:layout_gravity="left"
+                        app:layout_constraintRight_toLeftOf="@+id/work_progress_progress_bar"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintLeft_toRightOf="@+id/left_guideline"
+                        app:layout_constraintTop_toBottomOf="@+id/team_member_text_view"/>
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/add_member_image_view"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:onClick="@{()-> fragmentTaskDetail.onAddMemberClickListener()}"
-                    app:layout_constraintBottom_toBottomOf="@+id/task_members_recycler_view_main_layout"
-                    app:layout_constraintEnd_toEndOf="@+id/task_members_recycler_view_main_layout"
-                    app:layout_constraintStart_toEndOf="@+id/task_members_recycler_view_main_layout"
-                    app:layout_constraintTop_toTopOf="@+id/task_members_recycler_view_main_layout"
+                    app:layout_constraintBottom_toBottomOf="@+id/task_members_recycler_view"
+                    app:layout_constraintEnd_toEndOf="@+id/task_members_recycler_view"
+                    app:layout_constraintStart_toEndOf="@+id/task_members_recycler_view"
+                    app:layout_constraintTop_toTopOf="@+id/task_members_recycler_view"
+                    app:layout_constraintVertical_bias="1.0"
                     app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
                     app:srcCompat="@drawable/ic_add_user"
                     app:strokeColor="@color/white_color" />
@@ -303,16 +297,18 @@
                     style="?android:attr/progressBarStyle"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/task_members_recycler_view_main_layout"
+                    app:layout_constraintBottom_toBottomOf="@+id/task_members_recycler_view"
                     app:layout_constraintEnd_toStartOf="@+id/right_guideline"
-                    app:layout_constraintTop_toTopOf="@+id/task_members_recycler_view_main_layout" />
+                    app:layout_constraintTop_toTopOf="@+id/task_members_recycler_view" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/sub_task_recycler_view"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:paddingBottom="5dp"
                     android:foregroundGravity="center_vertical"
+                    app:layout_constraintBottom_toTopOf="@+id/add_new_sub_task_btn"
                     app:layout_constraintEnd_toStartOf="@+id/right_guideline"
                     app:layout_constraintStart_toStartOf="@+id/left_guideline"
                     app:layout_constraintTop_toBottomOf="@+id/today_update_text_view" />
@@ -330,12 +326,12 @@
                     app:layout_constraintEnd_toStartOf="@+id/right_guideline"
                     app:layout_constraintStart_toStartOf="@+id/left_guideline"
                     app:layout_constraintTop_toBottomOf="@+id/today_update_text_view" />
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/insert_new_sub_task_edit_text"
                     android:layout_width="0dp"
                     android:layout_height="50dp"
                     android:layout_marginStart="5dp"
-                    android:layout_marginTop="3dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="16dp"
                     android:background="@drawable/gray_bg"
@@ -350,8 +346,7 @@
                     android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/add_new_sub_task_btn"
-                    app:layout_constraintStart_toStartOf="@+id/left_guideline"
-                    app:layout_constraintTop_toBottomOf="@+id/sub_task_recycler_view" />
+                    app:layout_constraintStart_toStartOf="@+id/left_guideline" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/add_new_sub_task_btn"

@@ -1,5 +1,6 @@
 package com.example.taskmanagement.utils
 
+import android.graphics.Canvas
 import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
@@ -22,17 +23,18 @@ class RecyclerViewMarginItemDecoration(
         val itemCount = state.itemCount
 
         with(outRect) {
-//            if (itemPosition == 0) {
-                top = topMargin
-//            }
-//            right = if (itemCount > 0 && itemPosition == itemCount - 1) {
-//                0
-//            }else{
-//                rightMargin
-//            }
-            right = rightMargin
-            left = leftMargin
-            bottom = bottomMargin
+////            if (itemPosition == 0) {
+//                top = topMargin
+////            }
+            right = if (itemCount > 0 && itemPosition == itemCount - 1) {
+                0
+            }else{
+                rightMargin
+            }
+//            right = rightMargin
+//            left = leftMargin
+//            bottom = bottomMargin
         }
     }
+
 }
