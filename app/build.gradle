@@ -96,7 +96,8 @@ dependencies {
     kapt "androidx.room:room-compiler:2.4.0"
 
     // Circle progress show library
-    implementation 'com.timqi.sectorprogressview:library:2.0.1'
+    implementation 'com.github.bmarrdev:android-DecoView-charting:v1.2'
+
 
     // Local unit tests
     testImplementation "androidx.test:core:1.4.0"
