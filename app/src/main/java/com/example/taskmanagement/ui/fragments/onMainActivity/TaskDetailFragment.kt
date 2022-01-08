@@ -53,49 +53,33 @@ class TaskDetailFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-        setupToolbar(view)
+        setupToolbar()
         initTaskDetailsFields()
         setOnSubTaskItemClickListener()
     }
 
-    @SuppressLint("SetTextI18n")
-    private fun getWorkProgress() {
-        viewModel.getTaskWithSubTasks(currentTaskId!!).observe(viewLifecycleOwner, Observer {
-            if (it.isNotEmpty()) {
-                it.forEach {
-                    val totalSubTask = it.subTasks.count().toFloat()
-                    val totalCompleteSubtask = it.subTasks.count {
-                        it.isCompleted
-                    }.toFloat()
-                    showWorkProgression(totalCompleteSubtask, totalSubTask)
-                }
-            }
-        })
+    private fun initTaskDetailsFields() {
+        val task = args.task
+        currentTaskId = task.taskId
+
+        binding.taskTitle.text = task.taskTitle
+        binding.shortDescription.text = task.shortDescription
+        binding.taskDescription.text = task.longDescription
+
+        initTaskMembers()
+        initSubTasks()
     }
 
-    @SuppressLint("SetTextI18n")
-    private fun showWorkProgression(totalCompleteSubtask: Float, totalSubTask: Float) {
-        binding.workProgression.visibility = View.VISIBLE
-        binding.workProgressionCircleProgress.visibility = View.VISIBLE
-
-        val percent = totalCompleteSubtask.div(totalSubTask).times(100)
-        val percentWith2digits: Float = String.format("%.2f", percent).toFloat()
-        binding.workProgression.text = "$percentWith2digits%"
-        binding.workProgressionCircleProgress.percent = percentWith2digits
-
-    }
-
-    private fun showSubTasks() {
-        viewModel.getTaskWithSubTasks(currentTaskId!!).observe(viewLifecycleOwner, Observer {
+    private fun initTaskMembers() {
+        viewModel.getTaskWithUsers(currentTaskId!!).observe(viewLifecycleOwner, Observer {
             it.forEach {
-                if (it.subTasks.isEmpty()) {
-                    binding.notAnyTaskToShow.visibility = View.VISIBLE
+                if (it.users.isEmpty()) {
+                    binding.notAnyMemberJoined.visibility = View.VISIBLE
                 } else {
-                    binding.notAnyTaskToShow.visibility = View.INVISIBLE
-                    subTaskRecyclerAdapter.differ.submitList(it.subTasks)
-
-                    initSubTaskRecyclerView()
+                    binding.notAnyMemberJoined.visibility = View.INVISIBLE
+                    binding.taskMembersRecyclerView.visibility = View.VISIBLE
+                    taskMembersRecyclerAdapter.differ.submitList(it.users)
+                    initMembersRecyclerView()
                 }
             }
 
@@ -116,14 +100,31 @@ class TaskDetailFragment : BaseFragment() {
         }
     }
 
+    private fun initSubTasks() {
+        viewModel.getTaskWithSubTasks(currentTaskId!!).observe(viewLifecycleOwner, Observer {
+            it.forEach {
+                if (it.subTasks.isEmpty()) {
+                    binding.notAnyTaskToShow.visibility = View.VISIBLE
+                } else {
+                    binding.notAnyTaskToShow.visibility = View.INVISIBLE
+                    subTaskRecyclerAdapter.differ.submitList(it.subTasks)
+
+                    initSubTaskRecyclerView()
+                }
+            }
+
+        })
+    }
+
     private fun initSubTaskRecyclerView() {
         binding.subTaskRecyclerView.setupRecyclerView(
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false),
             subTaskRecyclerAdapter,
             RecyclerViewMarginItemDecoration(0, 0, 0, 1)
         )
-        getWorkProgress()
+        initWorkProgression()
     }
+
 
     private fun getAllUsers() {
         viewModel.allUsers.observe(viewLifecycleOwner, Observer {
@@ -131,36 +132,10 @@ class TaskDetailFragment : BaseFragment() {
         })
     }
 
-    private fun initTaskDetailsFields() {
-        val task = args.task
-        currentTaskId = task.taskId
 
-        binding.taskTitle.text = task.taskTitle
-        binding.shortDescription.text = task.shortDescription
-        binding.taskDescription.text = task.longDescription
-
-        showTaskMembers()
-        showSubTasks()
-    }
-
-    private fun showTaskMembers() {
-        viewModel.getTaskWithUsers(currentTaskId!!).observe(viewLifecycleOwner, Observer {
-            it.forEach {
-                if (it.users.isEmpty()) {
-                    binding.notAnyMemberJoined.visibility = View.VISIBLE
-                } else {
-                    binding.notAnyMemberJoined.visibility = View.INVISIBLE
-                    binding.taskMembersRecyclerView.visibility = View.VISIBLE
-                    taskMembersRecyclerAdapter.differ.submitList(it.users)
-                    initMembersRecyclerView()
-                }
-            }
-
-        })
-    }
 
     @SuppressLint("SetTextI18n", "CutPasteId")
-    private fun setupToolbar(view: View) {
+    private fun setupToolbar() {
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
 
@@ -177,18 +152,44 @@ class TaskDetailFragment : BaseFragment() {
 
     }
 
+    @SuppressLint("SetTextI18n")
+    private fun initWorkProgression() {
+        viewModel.getTaskWithSubTasks(currentTaskId!!).observe(viewLifecycleOwner, Observer {
+            if (it.isNotEmpty()) {
+                it.forEach {
+                    val totalSubTask = it.subTasks.count().toFloat()
+                    val totalCompleteSubtask = it.subTasks.count {
+                        it.isCompleted
+                    }.toFloat()
+                    showWorkProgression(totalCompleteSubtask, totalSubTask)
+                }
+            }
+        })
+    }
+    @SuppressLint("SetTextI18n")
+    private fun showWorkProgression(totalCompleteSubtask: Float, totalSubTask: Float) {
+        binding.workProgression.visibility = View.VISIBLE
+        binding.workProgressionCircleProgress.visibility = View.VISIBLE
+
+        val percent = totalCompleteSubtask.div(totalSubTask).times(100)
+        val percentWith2digits: Float = String.format("%.2f", percent).toFloat()
+        binding.workProgression.text = "$percentWith2digits%"
+        binding.workProgressionCircleProgress.percent = percentWith2digits
+
+    }
+
     fun onAddMemberClickListener() {
         AddMemberDialog(
             users,
             requireContext(),
             object : AddMemberToTaskDialogListener {
                 override fun onAddButtonClicked(usersList: List<User>) {
-                    addTaskItToMembersAndUpdateUsers(usersList)
+                    setCurrentTaskIdForAddedUsersAndUpdateUsers(usersList)
                 }
             }).show()
     }
 
-    private fun addTaskItToMembersAndUpdateUsers(membersList: List<User>) {
+    private fun setCurrentTaskIdForAddedUsersAndUpdateUsers(membersList: List<User>) {
         membersList.forEach {
             it.apply {
                 taskId = currentTaskId
@@ -205,10 +206,26 @@ class TaskDetailFragment : BaseFragment() {
                 view.shortSnackBar("Pleas Enter Sub Task Title...")
             } else {
                 clearDangerBackground(this.insertNewSubTaskEditText)
-                insertTaskToDatabase(view)
-                getWorkProgress()
+                insertTaskToDatabase()
+                initWorkProgression()
             }
         }
+    }
+
+    private fun insertTaskToDatabase() {
+
+        val inputSubTask = binding.insertNewSubTaskEditText.text.toString()
+
+        val subTask = SubTask(
+            0,
+            inputSubTask,
+            false,
+            currentTaskId!!
+        )
+
+        viewModel.insertSubTask(subTask)
+
+        binding.insertNewSubTaskEditText.text?.clear()
     }
 
     private fun changeBackgroundLayoutToDangerousLayout(view: TextInputEditText) {
@@ -223,22 +240,6 @@ class TaskDetailFragment : BaseFragment() {
             requireContext(),
             R.drawable.gray_bg
         )
-    }
-
-    private fun insertTaskToDatabase(view: View) {
-
-        val inputSubTask = binding.insertNewSubTaskEditText.text.toString()
-
-        val subTask = SubTask(
-            0,
-            inputSubTask,
-            false,
-            currentTaskId!!
-        )
-
-        viewModel.insertSubTask(subTask)
-
-        binding.insertNewSubTaskEditText.text?.clear()
     }
 
     private fun setOnSubTaskItemClickListener() {
