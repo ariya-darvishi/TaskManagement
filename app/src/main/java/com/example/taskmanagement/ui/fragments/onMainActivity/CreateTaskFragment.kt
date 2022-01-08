@@ -40,26 +40,9 @@ class CreateTaskFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupToolbar()
+        setupToolbar(R.id.createTaskFragment, "Create Task")
     }
 
-    @SuppressLint("SetTextI18n", "CutPasteId")
-    private fun setupToolbar() {
-
-        navController.addOnDestinationChangedListener { _, destination, _ ->
-
-            if (destination.id == R.id.createTaskFragment) {
-
-                toolbarTitle.text = "Create Task"
-
-                toolbarBackBtn.setOnClickListener {
-                    Navigation.findNavController(it).popBackStack()
-                }
-            }
-
-        }
-
-    }
 
     @SuppressLint("UseCompatLoadingForDrawables")
     fun createNewTaskBtnClickListener(view: View) {

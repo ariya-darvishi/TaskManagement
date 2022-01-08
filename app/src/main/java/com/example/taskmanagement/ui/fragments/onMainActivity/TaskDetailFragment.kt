@@ -53,7 +53,9 @@ class TaskDetailFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupToolbar()
+        setupToolbar(R.id.createTaskFragment, "Create Task")
+
+
         initTaskDetailsFields()
         setOnSubTaskItemClickListener()
     }
@@ -130,26 +132,6 @@ class TaskDetailFragment : BaseFragment() {
         viewModel.allUsers.observe(viewLifecycleOwner, Observer {
             users = it
         })
-    }
-
-
-
-    @SuppressLint("SetTextI18n", "CutPasteId")
-    private fun setupToolbar() {
-
-        navController.addOnDestinationChangedListener { _, destination, _ ->
-
-            if (destination.id == R.id.taskDetailFragment) {
-
-                toolbarTitle.text = "Task Details"
-
-                toolbarBackBtn.setOnClickListener {
-                    Navigation.findNavController(it).popBackStack()
-                }
-            }
-
-        }
-
     }
 
     @SuppressLint("SetTextI18n")
