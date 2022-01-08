@@ -220,7 +220,7 @@ class TaskDetailFragment : Fragment() {
         percent = calculateWorkProgression(totalCompleteSubtask, totalSubTask)
         binding.workProgression.text = "$percent%"
         binding.workProgressionCircleProgress.percent = percent
-//        updateTask(percent, currentTaskId!!)
+//        updateTask()
 
     }
 
@@ -318,4 +318,28 @@ class TaskDetailFragment : Fragment() {
         }
     }
 
+    override fun onPause() {
+        super.onPause()
+        updateTask()
+    }
+
+//    override fun onStop() {
+//        super.onStop()
+//        updateTask()
+//    }
+//
+//    override fun onDestroyView() {
+//        super.onDestroyView()
+//        updateTask()
+//    }
+//
+//    override fun onDestroy() {
+//        super.onDestroy()
+//        updateTask()
+//    }
+
+//    override fun onDetach() {
+//        super.onDetach()
+//        updateTask()
+//    }
 }
