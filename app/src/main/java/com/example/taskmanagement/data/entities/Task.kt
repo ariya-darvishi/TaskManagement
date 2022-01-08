@@ -4,7 +4,6 @@ import android.os.Parcel
 import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import androidx.versionedparcelable.ParcelField
 
 @Entity
 data class Task(
@@ -14,7 +13,8 @@ data class Task(
     val taskTitle: String,
     val shortDescription: String,
     val longDescription: String,
-    val taskImg: String?
+    val taskImg: String?,
+    var task_progression:Float = 0f
 
 ):Parcelable {
     constructor(parcel: Parcel) : this(
@@ -22,7 +22,8 @@ data class Task(
         parcel.readString().toString(),
         parcel.readString().toString(),
         parcel.readString().toString(),
-        parcel.readString()
+        parcel.readString(),
+        parcel.readFloat()
     ) {
     }
 
@@ -32,6 +33,7 @@ data class Task(
         parcel.writeString(shortDescription)
         parcel.writeString(longDescription)
         parcel.writeString(taskImg)
+        parcel.writeFloat(task_progression)
     }
 
     override fun describeContents(): Int {
