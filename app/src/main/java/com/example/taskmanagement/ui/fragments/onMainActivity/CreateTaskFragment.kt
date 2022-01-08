@@ -65,6 +65,7 @@ class CreateTaskFragment : BaseFragment() {
     fun createNewTaskBtnClickListener(view: View) {
 
         binding.apply {
+            checkEmptyAllTextFields()
             if (this.createTaskInputTitle.text.isNullOrBlank()) {
                 changeBackgroundLayoutToDangerousLayout(this.createTaskInputTitle)
                 view.shortSnackBar("Pleas Enter Task Title...")
@@ -89,6 +90,20 @@ class CreateTaskFragment : BaseFragment() {
             }
         }
 
+    }
+
+    private fun checkEmptyAllTextFields() {
+        binding.apply {
+            if (
+                this.createTaskInputTitle.text.isNullOrBlank()
+                && this.createTaskInputTitle.text.isNullOrBlank()
+                && this.createTaskInputTitle.text.isNullOrBlank()
+            ) {
+                changeBackgroundLayoutToDangerousLayout(this.createTaskInputTitle)
+                changeBackgroundLayoutToDangerousLayout(this.createTaskInputTitle)
+                changeBackgroundLayoutToDangerousLayout(this.createTaskInputTitle)
+            }
+        }
     }
 
     private fun insertTaskToDatabase(view: View) {
@@ -117,7 +132,7 @@ class CreateTaskFragment : BaseFragment() {
 
     }
 
-    private fun clearDangerBackground(view: TextInputEditText){
+    private fun clearDangerBackground(view: TextInputEditText) {
         view.background = ContextCompat.getDrawable(
             requireContext(),
             R.drawable.gray_bg
