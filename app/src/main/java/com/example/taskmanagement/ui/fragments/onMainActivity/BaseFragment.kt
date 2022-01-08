@@ -33,22 +33,4 @@ open class BaseFragment : Fragment() {
         toolbarBackBtn = toolbar.findViewById(R.id.toolbar_back_btn)
     }
 
-    @SuppressLint("SetTextI18n", "CutPasteId")
-    internal fun setupToolbar(onResumeFragmentDestinationId: Int, fragmentToolbarTitle: String) {
-
-        navController.addOnDestinationChangedListener { _, destination, _ ->
-
-            if (destination.id == onResumeFragmentDestinationId) {
-
-                toolbarTitle.text = fragmentToolbarTitle
-
-                toolbarBackBtn.setOnClickListener {
-                    Navigation.findNavController(it).popBackStack()
-                }
-            }
-
-        }
-
-    }
-
 }
