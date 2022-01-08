@@ -132,7 +132,8 @@ class CreateTaskFragment : Fragment() {
             taskTitle,
             taskShortDescription,
             taskDescription,
-            ""
+            "",
+
         )
 
         viewModel.insertTask(newTask)

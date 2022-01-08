@@ -27,7 +27,7 @@ class SubTaskRecyclerViewAdapter() :
             oldItem: SubTask,
             newItem: SubTask
         ): Boolean {
-            return oldItem.taskId == newItem.taskId
+            return oldItem.subTaskId == newItem.subTaskId
         }
 
         override fun areContentsTheSame(

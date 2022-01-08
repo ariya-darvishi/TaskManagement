@@ -3,9 +3,10 @@ package com.example.taskmanagement.data.entities.relations
 import androidx.room.Embedded
 import androidx.room.Relation
 import com.example.taskmanagement.data.entities.Task
+import com.example.taskmanagement.data.entities.TaskMember
 import com.example.taskmanagement.data.entities.User
 
-data class TaskWithUsers(
+data class TaskWithTaskMembers(
 
     @Embedded val task: Task,
 
@@ -14,6 +15,6 @@ data class TaskWithUsers(
         entityColumn = "taskId"
     )
 
-    val users: List<User>
+    val taskMembers: List<TaskMember>
 
 )

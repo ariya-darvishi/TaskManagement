@@ -13,6 +13,7 @@ import com.example.taskmanagement.databinding.RecyclerViewItemShowAllTasksBindin
 import android.annotation.SuppressLint
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
+import com.example.taskmanagement.data.entities.TaskMember
 import com.example.taskmanagement.data.entities.User
 import com.example.taskmanagement.databinding.RecyclerViewItemTaskMemberBinding
 import com.google.android.material.imageview.ShapeableImageView
@@ -25,17 +26,17 @@ class TaskMembersRecyclerViewAdapter :
     class TaskMembersViewHolder(binding: RecyclerViewItemTaskMemberBinding) :
         RecyclerView.ViewHolder(binding.root)
 
-    private val diffCallback = object : DiffUtil.ItemCallback<User>() {
+    private val diffCallback = object : DiffUtil.ItemCallback<TaskMember>() {
         override fun areItemsTheSame(
-            oldItem: User,
-            newItem: User
+            oldItem: TaskMember,
+            newItem: TaskMember
         ): Boolean {
-            return oldItem.taskId == newItem.taskId
+            return oldItem.memberId == newItem.memberId
         }
 
         override fun areContentsTheSame(
-            oldItem: User,
-            newItem: User
+            oldItem: TaskMember,
+            newItem: TaskMember
         ): Boolean {
             return oldItem.hashCode() == newItem.hashCode()
         }
@@ -43,12 +44,12 @@ class TaskMembersRecyclerViewAdapter :
 
     val differ = AsyncListDiffer(this, diffCallback)
 
-    var dataList: List<User>
+    var dataList: List<TaskMember>
         get() = differ.currentList
         set(value) = differ.submitList(value)
 
     @SuppressLint("NotifyDataSetChanged")
-    fun updateData(newData: List<User>) {
+    fun updateData(newData: List<TaskMember>) {
         dataList = newData
         notifyDataSetChanged()
     }
@@ -77,21 +78,21 @@ class TaskMembersRecyclerViewAdapter :
         position: Int
     ) {
 
-        val userItem = dataList[position]
+        val memberItem = dataList[position]
         holder.itemView.apply {
-            Glide.with(this).load(userItem.userImg).into(this.findViewById<ShapeableImageView>(R.id.user_image))
+            Glide.with(this).load(memberItem.user.userImg).into(this.findViewById<ShapeableImageView>(R.id.user_image))
             setOnClickListener {
                 onItemClickListener?.let {
-                    it(userItem)
+                    it(memberItem)
                 }
             }
 
         }
     }
 
-    private var onItemClickListener: ((User) -> Unit)? = null
+    private var onItemClickListener: ((TaskMember) -> Unit)? = null
 
-    fun setOnItemClickListener(listener: (User) -> Unit) {
+    fun setOnItemClickListener(listener: (TaskMember) -> Unit) {
         onItemClickListener = listener
     }
 }

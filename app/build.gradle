@@ -92,6 +92,9 @@ dependencies {
     // optional - Kotlin Extensions and Coroutines support for Room
     implementation "androidx.room:room-ktx:2.4.0"
 
+    // Gson
+    implementation 'com.google.code.gson:gson:2.8.6'
+
     // To use Kotlin annotation processing tool (kapt)
     kapt "androidx.room:room-compiler:2.4.0"
 

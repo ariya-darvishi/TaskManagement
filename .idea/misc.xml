@@ -87,7 +87,7 @@
         <entry key="app/src/main/res/layout/fragment_task_detail.xml" value="0.1278538812785388" />
         <entry key="app/src/main/res/layout/recycler_view_item_add_member_to_task.xml" value="0.25842696629213485" />
         <entry key="app/src/main/res/layout/recycler_view_item_show_all_tasks.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/recycler_view_item_show_all_tasks_minus_newest_task.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/recycler_view_item_show_all_tasks_minus_newest_task.xml" value="0.2" />
         <entry key="app/src/main/res/layout/recycler_view_item_show_member_task.xml" value="0.13043478260869565" />
         <entry key="app/src/main/res/layout/recycler_view_item_sub_task.xml" value="1.0" />
         <entry key="app/src/main/res/layout/recycler_view_item_task_member.xml" value="0.12454710144927536" />

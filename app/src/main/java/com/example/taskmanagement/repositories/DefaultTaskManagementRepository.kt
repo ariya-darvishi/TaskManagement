@@ -4,10 +4,10 @@ import androidx.lifecycle.LiveData
 import com.example.taskmanagement.data.TaskManagementDao
 import com.example.taskmanagement.data.entities.SubTask
 import com.example.taskmanagement.data.entities.Task
+import com.example.taskmanagement.data.entities.TaskMember
 import com.example.taskmanagement.data.entities.User
 import com.example.taskmanagement.data.entities.relations.TaskWithSubTasks
-import com.example.taskmanagement.data.entities.relations.TaskWithUsers
-import kotlinx.coroutines.flow.Flow
+import com.example.taskmanagement.data.entities.relations.TaskWithTaskMembers
 
 class DefaultTaskManagementRepository(
     private val dao: TaskManagementDao
@@ -22,6 +22,10 @@ class DefaultTaskManagementRepository(
 
     override suspend fun insertUser(user: User) {
         dao.insertUser(user)
+    }
+
+    override suspend fun insertTaskMember(taskMember: TaskMember) {
+        dao.insertTaskMember(taskMember)
     }
 
     override suspend fun updateSubTaskStatus(subTask: SubTask) {
@@ -41,6 +45,7 @@ class DefaultTaskManagementRepository(
 
 
     override fun getNewestTask(): LiveData<Task> = dao.getNewestTask()
+    override fun getAllTaskMembers(): LiveData<List<TaskMember>>  = dao.getAllTaskMembers()
 
     override fun getAllTasksMinusNewestTask(): LiveData<List<Task>> =
         dao.getAllTasksMinusNewestTask()
@@ -48,6 +53,6 @@ class DefaultTaskManagementRepository(
     override fun getTaskWithSubTasks(taskId: Int): LiveData<List<TaskWithSubTasks>> =
         dao.getTaskWithSubTasks(taskId)
 
-    override fun getTaskWithUsers(taskId: Int): LiveData<List<TaskWithUsers>> =
-        dao.getTaskWithUsers(taskId)
+    override fun getTaskWithTaskMembers(taskId: Int): LiveData<List<TaskWithTaskMembers>> =
+        dao.getTaskWithTaskMembers(taskId)
 }

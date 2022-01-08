@@ -1,14 +1,14 @@
 package com.example.taskmanagement.viewModels
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.taskmanagement.data.entities.SubTask
 import com.example.taskmanagement.data.entities.Task
+import com.example.taskmanagement.data.entities.TaskMember
 import com.example.taskmanagement.data.entities.User
 import com.example.taskmanagement.data.entities.relations.TaskWithSubTasks
-import com.example.taskmanagement.data.entities.relations.TaskWithUsers
+import com.example.taskmanagement.data.entities.relations.TaskWithTaskMembers
 import com.example.taskmanagement.repositories.TaskManagementRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -24,8 +24,8 @@ class MainViewModel @Inject constructor(
     var allTasksMinusNewestTask: LiveData<List<Task>> = repository.getAllTasksMinusNewestTask()
     var allTasks: LiveData<List<Task>> = repository.getAllTasks()
     var allUsers: LiveData<List<User>> = repository.getAllUsers()
+    var allTaskMembers: LiveData<List<TaskMember>> = repository.getAllTaskMembers()
     var newestTask: LiveData<Task> = repository.getNewestTask()
-
 
     fun insertTask(task: Task) = viewModelScope.launch(Dispatchers.IO) {
         repository.insertTask(task)
@@ -33,6 +33,10 @@ class MainViewModel @Inject constructor(
 
     fun insertSubTask(subTask: SubTask) = viewModelScope.launch() {
         repository.insertSubTask(subTask)
+    }
+
+    fun insertTaskMember(taskMember: TaskMember) = viewModelScope.launch(Dispatchers.IO) {
+        repository.insertTaskMember(taskMember)
     }
 
     fun insertUser(user: User) = viewModelScope.launch(Dispatchers.IO) {
@@ -55,8 +59,8 @@ class MainViewModel @Inject constructor(
         repository.getTaskWithSubTasks(taskId)
 
 
-    fun getTaskWithUsers(taskId: Int): LiveData<List<TaskWithUsers>> =
-        repository.getTaskWithUsers(taskId)
+    fun getTaskWithTaskMembers(taskId: Int): LiveData<List<TaskWithTaskMembers>> =
+        repository.getTaskWithTaskMembers(taskId)
 
 }
 

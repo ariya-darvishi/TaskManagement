@@ -50,14 +50,14 @@ class MainActivity : AppCompatActivity() {
     }
     private fun addFakeUsersToDatabase() {
         val users = listOf(
-            User(0, "Bahram", "1", R.drawable.ic_user_1, null),
-            User(0, "Melika", "2", R.drawable.ic_user_2, null),
-            User(0, "Behruz", "3", R.drawable.ic_user_3, null),
-            User(0, "Mona", "4", R.drawable.ic_user_4, null),
-            User(0, "Ariya", "5", R.drawable.ic_user_5, null),
-            User(0, "Shadi", "6", R.drawable.ic_user_6, null),
-            User(0, "Parsa", "7", R.drawable.ic_user_7, null),
-            User(0, "Parisa", "8", R.drawable.ic_user_8, null),
+            User(0, "Bahram", "1", R.drawable.ic_user_1),
+            User(0, "Melika", "2", R.drawable.ic_user_2),
+            User(0, "Behruz", "3", R.drawable.ic_user_3),
+            User(0, "Mona", "4", R.drawable.ic_user_4),
+            User(0, "Ariya", "5", R.drawable.ic_user_5),
+            User(0, "Shadi", "6", R.drawable.ic_user_6),
+            User(0, "Parsa", "7", R.drawable.ic_user_7),
+            User(0, "Parisa", "8", R.drawable.ic_user_8),
         )
         lifecycleScope.launch() {
             users.forEach { viewModel.insertUser(it) }

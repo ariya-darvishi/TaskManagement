@@ -1,7 +1,6 @@
 package com.example.taskmanagement.ui.fragments.onMainActivity
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -25,6 +24,8 @@ import com.example.taskmanagement.R
 import com.example.taskmanagement.adapters.SubTaskRecyclerViewAdapter
 import com.example.taskmanagement.adapters.TaskMembersRecyclerViewAdapter
 import com.example.taskmanagement.data.entities.SubTask
+import com.example.taskmanagement.data.entities.Task
+import com.example.taskmanagement.data.entities.TaskMember
 import com.example.taskmanagement.data.entities.User
 import com.example.taskmanagement.databinding.FragmentTaskDetailBinding
 import com.example.taskmanagement.ui.activities.MainActivity
@@ -35,7 +36,6 @@ import com.example.taskmanagement.utils.shortSnackBar
 import com.example.taskmanagement.viewModels.MainViewModel
 import com.google.android.material.textfield.TextInputEditText
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.MutableSharedFlow
 
 
 @AndroidEntryPoint
@@ -46,7 +46,7 @@ class TaskDetailFragment : Fragment() {
     private lateinit var binding: FragmentTaskDetailBinding
     private val viewModel: MainViewModel by viewModels()
     private val args: TaskDetailFragmentArgs by navArgs()
-    var currentTaskId: Int? = null
+//    var currentTaskId: Int? = null
     private var percent = 0f
     private var users = listOf<User>()
 
@@ -56,6 +56,8 @@ class TaskDetailFragment : Fragment() {
     lateinit var toolbarBackBtn: ImageButton
 
     lateinit var mainActivity: MainActivity
+
+    private lateinit var currentTask: Task
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -123,26 +125,27 @@ class TaskDetailFragment : Fragment() {
     }
 
     private fun initTaskDetailsFields() {
-        val task = args.task
-        currentTaskId = task.taskId
+        currentTask = args.task
+//        currentTaskId = args.task.taskId
 
-        binding.taskTitle.text = task.taskTitle
-        binding.shortDescription.text = task.shortDescription
-        binding.taskDescription.text = task.longDescription
+
+        binding.taskTitle.text = currentTask.taskTitle
+        binding.shortDescription.text = currentTask.shortDescription
+        binding.taskDescription.text = currentTask.longDescription
 
         initTaskMembers()
         initSubTasks()
     }
 
     private fun initTaskMembers() {
-        viewModel.getTaskWithUsers(currentTaskId!!).observe(viewLifecycleOwner, Observer {
+        viewModel.getTaskWithTaskMembers(currentTask.taskId).observe(viewLifecycleOwner, Observer {
             it.forEach {
-                if (it.users.isEmpty()) {
+                if (it.taskMembers.isEmpty()) {
                     binding.notAnyMemberJoined.visibility = View.VISIBLE
                 } else {
                     binding.notAnyMemberJoined.visibility = View.INVISIBLE
                     binding.taskMembersRecyclerView.visibility = View.VISIBLE
-                    taskMembersRecyclerAdapter.differ.submitList(it.users)
+                    taskMembersRecyclerAdapter.differ.submitList(it.taskMembers)
                     initMembersRecyclerView()
                 }
             }
@@ -160,12 +163,12 @@ class TaskDetailFragment : Fragment() {
             adapter = taskMembersRecyclerAdapter
             layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-            addItemDecoration(RecyclerViewMarginItemDecoration(1, 1, 1, -30))
+            addItemDecoration(RecyclerViewMarginItemDecoration(0, 0, 0, -30))
         }
     }
 
     private fun initSubTasks() {
-        viewModel.getTaskWithSubTasks(currentTaskId!!).observe(viewLifecycleOwner, Observer {
+        viewModel.getTaskWithSubTasks(currentTask.taskId).observe(viewLifecycleOwner, Observer {
             it.forEach {
                 if (it.subTasks.isEmpty()) {
                     binding.notAnyTaskToShow.visibility = View.VISIBLE
@@ -198,7 +201,7 @@ class TaskDetailFragment : Fragment() {
 
     @SuppressLint("SetTextI18n")
     private fun initWorkProgression() {
-        viewModel.getTaskWithSubTasks(currentTaskId!!).observe(viewLifecycleOwner, Observer {
+        viewModel.getTaskWithSubTasks(currentTask.taskId).observe(viewLifecycleOwner, Observer {
             if (it.isNotEmpty()) {
                 it.forEach {
                     val totalSubTask = it.subTasks.count().toFloat()
@@ -225,7 +228,7 @@ class TaskDetailFragment : Fragment() {
     }
 
     private fun updateTask() {
-        viewModel.updateTask(percent, currentTaskId!!)
+        viewModel.updateTask(percent, currentTask.taskId)
     }
 
     fun onAddMemberClickListener() {
@@ -240,13 +243,14 @@ class TaskDetailFragment : Fragment() {
     }
 
     private fun setCurrentTaskIdForAddedUsersAndUpdateUsers(membersList: List<User>) {
-        membersList.forEach {
-            it.apply {
-                taskId = currentTaskId
-            }
-            viewModel.updateUser(it)
+        membersList.forEach { user ->
+            val taskMember = TaskMember(
+                0,
+                currentTask.taskId,
+                user
+            )
+            viewModel.insertTaskMember(taskMember)
         }
-
     }
 
     fun onAddSubTaskBtnClickListener(view: View) {
@@ -278,7 +282,7 @@ class TaskDetailFragment : Fragment() {
             0,
             inputSubTask,
             false,
-            currentTaskId!!
+            currentTask.taskId
         )
 
         viewModel.insertSubTask(subTask)

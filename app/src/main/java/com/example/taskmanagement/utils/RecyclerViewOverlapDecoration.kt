@@ -18,9 +18,22 @@ class RecyclerViewOverlapDecoration(
         parent: RecyclerView,
         state: RecyclerView.State
     ) {
-        val position = parent.getChildAdapterPosition(view)
+        val childCount = parent.childCount
+        val itemPosition = parent.getChildAdapterPosition(view)
         val itemCount = state.itemCount
-//        if (position == 0) outRect.left = 0 else  outRect.left =rightMargin
-//        outRect.right=rightMargin
+
+        with(outRect) {
+            if (itemPosition == 0) {
+                top = topMargin
+            }
+            right = if (itemCount > 0 && itemPosition == itemCount - 1) {
+                0
+            }else{
+                rightMargin
+            }
+            right = rightMargin
+            left = leftMargin
+            bottom = bottomMargin
+        }
     }
 }

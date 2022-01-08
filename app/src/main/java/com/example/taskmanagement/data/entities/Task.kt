@@ -14,9 +14,11 @@ data class Task(
     val shortDescription: String,
     val longDescription: String,
     val taskImg: String?,
-    var task_progression: Float = 0f,
 
-    val userList: List<User>
+//    val userList: List<User>?= mutableListOf(),
+
+    var task_progression: Float = 0f
+
 
 ):Parcelable {
     constructor(parcel: Parcel) : this(
@@ -25,8 +27,7 @@ data class Task(
         parcel.readString().toString(),
         parcel.readString().toString(),
         parcel.readString(),
-        parcel.readFloat(),
-        TODO("userList")
+        parcel.readValue(Float::class.java.classLoader) as Float
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
@@ -35,7 +36,7 @@ data class Task(
         parcel.writeString(shortDescription)
         parcel.writeString(longDescription)
         parcel.writeString(taskImg)
-        parcel.writeFloat(task_progression)
+        parcel.writeValue(task_progression)
     }
 
     override fun describeContents(): Int {
@@ -51,4 +52,5 @@ data class Task(
             return arrayOfNulls(size)
         }
     }
+
 }

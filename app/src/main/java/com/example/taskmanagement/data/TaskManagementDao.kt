@@ -4,10 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.example.taskmanagement.data.entities.SubTask
 import com.example.taskmanagement.data.entities.Task
+import com.example.taskmanagement.data.entities.TaskMember
 import com.example.taskmanagement.data.entities.User
 import com.example.taskmanagement.data.entities.relations.TaskWithSubTasks
-import com.example.taskmanagement.data.entities.relations.TaskWithUsers
-import kotlinx.coroutines.flow.Flow
+import com.example.taskmanagement.data.entities.relations.TaskWithTaskMembers
 
 @Dao
 interface TaskManagementDao {
@@ -18,10 +18,13 @@ interface TaskManagementDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertSubTask(subTask: SubTask)
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert
+    suspend fun insertTaskMember(taskMember: TaskMember)
+
+    @Insert
     suspend fun insertUser(user: User)
 
-    @Update(onConflict = OnConflictStrategy.REPLACE)
+    @Update
     suspend fun updateUser(user: User)
 
     @Query("UPDATE Task SET task_progression =:task_progression  WHERE taskId =:taskId")
@@ -36,6 +39,9 @@ interface TaskManagementDao {
     @Query("SELECT * FROM User")
     fun getAllUsers(): LiveData<List<User>>
 
+    @Query("SELECT * FROM TaskMember")
+    fun getAllTaskMembers(): LiveData<List<TaskMember>>
+
     @Query("SELECT * FROM Task ORDER BY taskId DESC LIMIT 1")
     fun getNewestTask(): LiveData<Task>
 
@@ -49,6 +55,6 @@ interface TaskManagementDao {
 
     @Transaction
     @Query("SELECT * FROM Task WHERE taskId = :taskId")
-    fun getTaskWithUsers(taskId: Int): LiveData<List<TaskWithUsers>>
+    fun getTaskWithTaskMembers(taskId: Int): LiveData<List<TaskWithTaskMembers>>
 
 }

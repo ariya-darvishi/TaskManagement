@@ -15,6 +15,7 @@ import com.example.taskmanagement.R
 import com.example.taskmanagement.adapters.ShowAllTasksMinusNewestTaskRecyclerViewAdapter
 import com.example.taskmanagement.adapters.TaskMembersRecyclerViewAdapter
 import com.example.taskmanagement.data.entities.Task
+import com.example.taskmanagement.data.entities.TaskMember
 import com.example.taskmanagement.data.entities.User
 import com.example.taskmanagement.databinding.FragmentHomeBinding
 import com.example.taskmanagement.utils.RecyclerViewMarginItemDecoration
@@ -27,10 +28,12 @@ class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
     private val viewModel: MainViewModel by viewModels()
-    private var showAllTasksMinusNewestTaskRecyclerViewAdapter = ShowAllTasksMinusNewestTaskRecyclerViewAdapter()
+    private var showAllTasksMinusNewestTaskRecyclerViewAdapter =
+        ShowAllTasksMinusNewestTaskRecyclerViewAdapter()
     private val taskMembersRecyclerAdapter = TaskMembersRecyclerViewAdapter()
-    private var newestTask : Task?= null
+    private var newestTask: Task? = null
     private var users = listOf<User>()
+    private var taskMembers = listOf<TaskMember>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,6 +43,7 @@ class HomeFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
         binding.fragmentHome = this
         getAllUsers()
+        getAllMember()
         return binding.root
     }
 
@@ -72,18 +76,21 @@ class HomeFragment : Fragment() {
                 binding.nothingAnyTaskToShowTextView.visibility = View.GONE
 
             showAllTasksMinusNewestTaskRecyclerViewAdapter.differ.submitList(it)
-            initRecyclerView()
+            initShowAllTasksMinusNewestTaskRecyclerView()
 
         })
     }
 
-    private fun initRecyclerView() {
+    private fun initShowAllTasksMinusNewestTaskRecyclerView() {
+
+        showAllTasksMinusNewestTaskRecyclerViewAdapter.setUserList(taskMembers)
         binding.allTasksMinusNewestTaskRecyclerView.setupRecyclerView(
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false),
             showAllTasksMinusNewestTaskRecyclerViewAdapter,
             RecyclerViewMarginItemDecoration(20, 20, 0, 0)
         )
     }
+
     private fun showNewestTask() {
         viewModel.newestTask.observe(viewLifecycleOwner, Observer {
             newestTask = it
@@ -99,12 +106,11 @@ class HomeFragment : Fragment() {
     }
 
 
-
-    private fun initTaskMembers(taskId:Int) {
-        viewModel.getTaskWithUsers(taskId).observe(viewLifecycleOwner, Observer {
+    private fun initTaskMembers(taskId: Int) {
+        viewModel.getTaskWithTaskMembers(taskId).observe(viewLifecycleOwner, Observer {
             it.forEach {
-                    taskMembersRecyclerAdapter.differ.submitList(it.users)
-                    initMembersRecyclerView()
+                taskMembersRecyclerAdapter.differ.submitList(it.taskMembers)
+                initMembersRecyclerView()
 
             }
 
@@ -112,24 +118,24 @@ class HomeFragment : Fragment() {
     }
 
     private fun initMembersRecyclerView() {
-        binding.newestTaskUsersRecyclerView.setupRecyclerView(
-            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false),
-            taskMembersRecyclerAdapter,
-            RecyclerViewMarginItemDecoration(0, -30, 0, 0)
-        )
-//        binding.newestTaskUsersRecyclerView.apply {
-//            adapter = taskMembersRecyclerAdapter
-//            layoutManager =
-//                LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-//            addItemDecoration(RecyclerViewMarginItemDecoration(1, 1, 1, -30))
-//        }
+//        binding.newestTaskUsersRecyclerView.setupRecyclerView(
+//            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false),
+//            taskMembersRecyclerAdapter,
+//            RecyclerViewMarginItemDecoration(0, -30, 0, 0)
+//        )
+        binding.newestTaskUsersRecyclerView.apply {
+            adapter = taskMembersRecyclerAdapter
+            layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+            addItemDecoration(RecyclerViewMarginItemDecoration(1, 1, 1, -30))
+        }
     }
 
     fun onSeeAllTasksClickListener(view: View) {
         view.findNavController().navigate(R.id.action_homeFragment_to_showAllTasksFragment)
     }
 
-    fun onDetailsNewestTaskClickListener(view: View){
+    fun onDetailsNewestTaskClickListener(view: View) {
         val bundle = Bundle().apply {
             putParcelable("task", newestTask)
         }
@@ -138,7 +144,8 @@ class HomeFragment : Fragment() {
             bundle
         )
     }
-    fun onAddMemberClickListener(){
+
+    fun onAddMemberClickListener() {
         AddMemberDialog(
             users,
             requireContext(),
@@ -151,11 +158,13 @@ class HomeFragment : Fragment() {
 
 
     private fun setCurrentTaskIdForAddedUsersAndUpdateUsers(membersList: List<User>) {
-        membersList.forEach {
-            it.apply {
-                taskId = newestTask?.taskId
-            }
-            viewModel.updateUser(it)
+        membersList.forEach { user ->
+            val taskMember = TaskMember(
+                0,
+                newestTask!!.taskId,
+                user
+            )
+            viewModel.insertTaskMember(taskMember)
         }
 
     }
@@ -163,6 +172,12 @@ class HomeFragment : Fragment() {
     private fun getAllUsers() {
         viewModel.allUsers.observe(viewLifecycleOwner, Observer {
             users = it
+        })
+    }
+
+    private fun getAllMember() {
+        viewModel.allTaskMembers.observe(viewLifecycleOwner, Observer {
+            taskMembers = it
         })
     }
 
