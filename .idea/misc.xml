@@ -17,6 +17,7 @@
         <entry key="app/src/main/res/drawable-v24/shape_btn.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/bg_dialog.xml" value="0.1287037037037037" />
         <entry key="app/src/main/res/drawable/bg_divider.xml" value="0.1259259259259259" />
+        <entry key="app/src/main/res/drawable/bg_sub_task_complete_mark.xml" value="0.12037037037037036" />
         <entry key="app/src/main/res/drawable/bg_user_selected_for_add_to_task.xml" value="0.1259259259259259" />
         <entry key="app/src/main/res/drawable/button_blue_bg.xml" value="0.12129629629629629" />
         <entry key="app/src/main/res/drawable/circle_button.xml" value="0.1" />
@@ -54,16 +55,20 @@
         <entry key="app/src/main/res/drawable/newest_task_users_back_bg.xml" value="0.12777777777777777" />
         <entry key="app/src/main/res/drawable/newest_task_users_list_front_bg.xml" value="0.12777777777777777" />
         <entry key="app/src/main/res/drawable/ring_outline_bg_blue.xml" value="0.12129629629629629" />
+        <entry key="app/src/main/res/drawable/ring_outline_bg_gray.xml" value="0.12037037037037036" />
         <entry key="app/src/main/res/drawable/search_bg.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/search_image.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/splash_image.xml" value="0.18796296296296297" />
         <entry key="app/src/main/res/drawable/splash_image2.xml" value="0.13148148148148148" />
+        <entry key="app/src/main/res/drawable/sub_task_outline_blue.xml" value="0.12037037037037036" />
+        <entry key="app/src/main/res/drawable/sub_task_outline_gray.xml" value="0.12037037037037036" />
         <entry key="app/src/main/res/drawable/text_input_edit_text_danger_bg.xml" value="0.12129629629629629" />
         <entry key="app/src/main/res/drawable/thumb_selector.xml" value="0.13148148148148148" />
         <entry key="app/src/main/res/drawable/track_selector.xml" value="0.13148148148148148" />
         <entry key="app/src/main/res/drawable/user_img_bg.xml" value="0.13425925925925927" />
         <entry key="app/src/main/res/layout-w1240dp/activity_login.xml" value="0.1" />
         <entry key="app/src/main/res/layout-w936dp/activity_login.xml" value="0.1" />
+        <entry key="app/src/main/res/layout-w936dp/recycler_view_item_sub_task.xml" value="0.18105263157894738" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.13333333333333333" />
         <entry key="app/src/main/res/layout/app_bar_layout.xml" value="0.1" />
@@ -78,11 +83,12 @@
         <entry key="app/src/main/res/layout/fragment_setting.xml" value="0.11775362318840579" />
         <entry key="app/src/main/res/layout/fragment_show_all_tasks.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_signup.xml" value="0.11775362318840579" />
-        <entry key="app/src/main/res/layout/fragment_task_detail.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_task_detail.xml" value="0.18816067653276955" />
         <entry key="app/src/main/res/layout/recycler_view_item_add_member_to_task.xml" value="0.25842696629213485" />
         <entry key="app/src/main/res/layout/recycler_view_item_show_all_tasks.xml" value="0.25" />
         <entry key="app/src/main/res/layout/recycler_view_item_show_all_tasks_minus_newest_task.xml" value="0.22" />
         <entry key="app/src/main/res/layout/recycler_view_item_show_member_task.xml" value="0.13043478260869565" />
+        <entry key="app/src/main/res/layout/recycler_view_item_sub_task.xml" value="0.1209563994374121" />
         <entry key="app/src/main/res/layout/recycler_view_item_task_member.xml" value="0.12454710144927536" />
         <entry key="app/src/main/res/menu/menu_bottom_navigation_view.xml" value="0.14537037037037037" />
         <entry key="app/src/main/res/menu/menu_detail_fragment.xml" value="0.1" />

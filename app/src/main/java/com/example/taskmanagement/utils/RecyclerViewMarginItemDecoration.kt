@@ -22,14 +22,15 @@ class RecyclerViewMarginItemDecoration(
         val itemCount = state.itemCount
 
         with(outRect) {
-            if (itemPosition == 0) {
+//            if (itemPosition == 0) {
                 top = topMargin
-            }
-            right = if (itemCount > 0 && itemPosition == itemCount - 1) {
-                0
-            }else{
-                rightMargin
-            }
+//            }
+//            right = if (itemCount > 0 && itemPosition == itemCount - 1) {
+//                0
+//            }else{
+//                rightMargin
+//            }
+            right = rightMargin
             left = leftMargin
             bottom = bottomMargin
         }
