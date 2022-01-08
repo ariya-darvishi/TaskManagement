@@ -42,16 +42,15 @@ class HomeFragment : Fragment() {
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
         binding.fragmentHome = this
-        getAllUsers()
-        getAllMember()
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        showNewestTask()
-        showAllTasksMinusNewestTask()
+        getAllMember()
+        getAllUsers()
+
         setOnItemClickListenerForRecyclerView()
 
     }
@@ -76,14 +75,13 @@ class HomeFragment : Fragment() {
                 binding.nothingAnyTaskToShowTextView.visibility = View.GONE
 
             showAllTasksMinusNewestTaskRecyclerViewAdapter.differ.submitList(it)
+            showAllTasksMinusNewestTaskRecyclerViewAdapter.setUserList(taskMembers)
             initShowAllTasksMinusNewestTaskRecyclerView()
 
         })
     }
 
     private fun initShowAllTasksMinusNewestTaskRecyclerView() {
-
-        showAllTasksMinusNewestTaskRecyclerViewAdapter.setUserList(taskMembers)
         binding.allTasksMinusNewestTaskRecyclerView.setupRecyclerView(
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false),
             showAllTasksMinusNewestTaskRecyclerViewAdapter,
@@ -178,6 +176,8 @@ class HomeFragment : Fragment() {
     private fun getAllMember() {
         viewModel.allTaskMembers.observe(viewLifecycleOwner, Observer {
             taskMembers = it
+            showNewestTask()
+            showAllTasksMinusNewestTask()
         })
     }
 
