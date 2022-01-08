@@ -67,8 +67,9 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/nested_users_recycler_view"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="50dp"
+            app:layout_constraintWidth="true"
             android:layout_marginTop="14dp"
             android:layout_marginEnd="100dp"
             app:layout_constraintBottom_toTopOf="@+id/guideline4"
