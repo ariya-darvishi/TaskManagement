@@ -263,8 +263,9 @@
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/task_members_recycler_view"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="50dp"
+                    app:layout_constraintWidth="true"
                     android:layout_gravity="left"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="40dp"
@@ -275,7 +276,7 @@
                     app:layout_constraintLeft_toRightOf="@+id/left_guideline"
                     app:layout_constraintRight_toLeftOf="@+id/work_progression_circle_progress"
                     app:layout_constraintTop_toBottomOf="@+id/team_member_text_view"
-                    app:layout_constraintWidth_default="wrap" />
+                     />
 
 
                 <com.google.android.material.imageview.ShapeableImageView

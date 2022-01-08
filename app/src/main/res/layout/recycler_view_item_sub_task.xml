@@ -39,9 +39,9 @@
 
         <TextView
             android:id="@+id/sub_task_title"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintWidth_default="wrap"
+            app:layout_constraintWidth="true"
             android:layout_marginStart="16dp"
             android:orientation="horizontal"
             android:text="SubTask title"
