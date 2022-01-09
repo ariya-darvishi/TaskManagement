@@ -3,14 +3,23 @@
     package="com.example.taskmanagement">
 
     <application
+        android:name=".TaskManagementApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.TaskManagement">
+        android:theme="@style/SplashScreenTheme">
+
+        <meta-data android:name="io.sentry.dsn" android:value="https://18832c3891a4485788cff99e91038676@o1111308.ingest.sentry.io/6140544" />
+        <!-- Set tracesSampleRate to 1.0 to capture 100% of transactions for performance monitoring.
+           We recommend adjusting this value in production. -->
+        <meta-data android:name="io.sentry.traces.sample-rate" android:value="1.0" />
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.activities.LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

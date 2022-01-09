@@ -7,4 +7,19 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+
+    <color name="black_color">#1E1E1E</color>
+    <color name="blue_color">#246BFD</color>
+    <color name="green_color">#24FD41</color>
+    <color name="white_color">#FFFFFF</color>
+    <color name="dark_gray_color">#666666</color>
+    <color name="gray_color">#D4D4D4</color>
+    <color name="light_gray_color">#E9E9E9</color>
+    <color name="orange_color">#FDB624</color>
+
+
+    <color name="newest_task_short_description">#CEDEFF</color>
+
+
 </resources>

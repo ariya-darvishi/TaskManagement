@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">TaskManagement</string>
+    <string name="month_and_date">Monday, April 26</string>
+    <string name="this_week">This Week</string>
 </resources>
