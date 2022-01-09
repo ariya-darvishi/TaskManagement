@@ -14,14 +14,23 @@ android {
         minSdk 28
         targetSdk 31
         versionCode 1
-        versionName "1.0"
+        versionName "0.0.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            def project = "TaskManager"
+            def SEP = "_"
+            def newApkName = "amirreza" + SEP + "darvishi" + SEP + project + SEP +  "V" + version + ".apk"
+            outputFileName = new File(newApkName)
+        }
     }
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -100,6 +109,9 @@ dependencies {
 
     // Circle progress show library
     implementation 'com.timqi.sectorprogressview:library:2.0.1'
+
+    // Sentry
+    implementation 'io.sentry:sentry-android:5.5.2'
 
     // Local unit tests
     testImplementation "androidx.test:core:1.4.0"

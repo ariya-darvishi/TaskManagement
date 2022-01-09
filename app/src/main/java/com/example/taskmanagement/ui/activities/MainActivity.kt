@@ -18,8 +18,7 @@ import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import android.content.SharedPreferences
-
-
+import io.sentry.Sentry
 
 
 @AndroidEntryPoint
@@ -34,6 +33,7 @@ class MainActivity : AppCompatActivity() {
         setTheme(R.style.Theme_TaskManagement)
 //        setContentView(R.layout.activity_main)
         activityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        Sentry.captureMessage("testing SDK setup")
 
 
         prefs = getSharedPreferences("com.mycompany.myAppName", MODE_PRIVATE);
