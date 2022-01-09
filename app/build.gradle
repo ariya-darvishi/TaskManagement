@@ -98,6 +98,10 @@ dependencies {
     // ViewPager2
     implementation "androidx.viewpager2:viewpager2:1.0.0"
 
+    // ImageSlideshow
+    implementation "com.github.denzcoskun:ImageSlideshow:0.1.0"
+
+
     // To use Kotlin annotation processing tool (kapt)
     kapt "androidx.room:room-compiler:2.4.0"
 
