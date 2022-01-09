@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/login_activity_nav_graph"
     app:startDestination="@id/getStartPageFragment">
 
     <fragment
         android:id="@+id/getStartPageFragment"
+        tools:layout="@layout/fragment_get_start_page"
         android:name="com.example.taskmanagement.ui.fragments.onLoginActivity.GetStartPageFragment"
         android:label="GetStartPageFragment" >
         <action
@@ -14,10 +16,12 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
+        tools:layout="@layout/fragment_login"
         android:name="com.example.taskmanagement.ui.fragments.onLoginActivity.LoginFragment"
         android:label="LoginFragment" />
     <fragment
         android:id="@+id/selectLoginOrSignupPageFragment"
+        tools:layout="@layout/fragment_select_login_or_signup_page"
         android:name="com.example.taskmanagement.ui.fragments.onLoginActivity.SelectLoginOrSignupPageFragment"
         android:label="SelectLoginOrSignupPageFragment" >
         <action
@@ -29,6 +33,7 @@
     </fragment>
     <fragment
         android:id="@+id/signupFragment"
+        tools:layout="@layout/fragment_signup"
         android:name="com.example.taskmanagement.ui.fragments.onLoginActivity.SignupFragment"
         android:label="SignupFragment" />
 </navigation>
