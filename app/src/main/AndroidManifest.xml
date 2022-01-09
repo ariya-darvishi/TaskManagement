@@ -11,10 +11,10 @@
         android:supportsRtl="true"
         android:theme="@style/SplashScreenTheme">
 
-        <meta-data android:name="io.sentry.dsn" android:value="https://18832c3891a4485788cff99e91038676@o1111308.ingest.sentry.io/6140544" />
-        <!-- Set tracesSampleRate to 1.0 to capture 100% of transactions for performance monitoring.
-           We recommend adjusting this value in production. -->
-        <meta-data android:name="io.sentry.traces.sample-rate" android:value="1.0" />
+<!--        <meta-data android:name="io.sentry.dsn" android:value="https://18832c3891a4485788cff99e91038676@o1111308.ingest.sentry.io/6140544" />-->
+<!--        &lt;!&ndash; Set tracesSampleRate to 1.0 to capture 100% of transactions for performance monitoring.-->
+<!--           We recommend adjusting this value in production. &ndash;&gt;-->
+<!--        <meta-data android:name="io.sentry.traces.sample-rate" android:value="1.0" />-->
         <activity
             android:name=".ui.activities.LoginActivity"
             android:exported="false" />

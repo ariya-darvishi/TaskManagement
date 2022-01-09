@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         setTheme(R.style.Theme_TaskManagement)
 //        setContentView(R.layout.activity_main)
         activityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        Sentry.captureMessage("testing SDK setup")
+//        Sentry.captureMessage("testing SDK setup")
 
 
         prefs = getSharedPreferences("com.mycompany.myAppName", MODE_PRIVATE);
